@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#
+# 以 JDK8 作为环境运行 IDEA
+#
+
+# 设置环境变量
+export PATH="$HOME/.config/Manual/jdk1.8.0_202/bin:$PATH"
+
+# 启动 IDEA
+exec "$HOME/.config/Manual/bin/idea" "$@"
