@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v6.6.0
+# @Version: v6.6.1
 # @Mail:    ivlioioilvi@gmail.com
 
 

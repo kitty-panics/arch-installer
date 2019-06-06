@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v9.0.0
+# @Version: v10.0.0
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -15,8 +15,6 @@ reset='\033[0m'
 
 echo -e "$green >>>>> Please enable Multilib and Testing repo. $reset"
 echo -e "$green >>>>> \"mirrorlist\" file will be edited.(Enter key continues) $reset"
-#echo -e "$green >>>>> 请启用 Multilib 和 Testing 仓库. $reset"
-#echo -e "$green >>>>> 将要开始编辑 \"mirrorlist\" 文件.(按下 Enter 键) $reset"
 read -r temp_Edit_Mirrorlist
 sudo vi /etc/pacman.conf
 sudo pacman -Syyuu
@@ -29,7 +27,7 @@ sudo pacman -S $(echo "
         # Intel 显卡
         Intel="xf86-video-intel mesa lib32-mesa"
         # NVIDIA 显卡
-        Nvidia="nvidia nvidia-utils lib32-nvidia-utils nvidia-settings"
+        Nvidia="nvidia-lts nvidia-utils lib32-nvidia-utils"
         # Vulkan 3D 图形和计算 API
         Vulkan="vulkan-icd-loader lib32-vulkan-icd-loader vulkan-intel"
     # X Window 系统
@@ -38,18 +36,14 @@ sudo pacman -S $(echo "
         # 输入设备
         Input_Devices="libinput xf86-input-libinput xorg-xinput"
         # 屏幕管理
-        Screen_Management="xorg-xrandr arandr"
-        # 背光
-        Backlight="light redshift"
+        Screen_Management="xorg-xrandr"
     # 桌面环境
-        # 桌面
-        Desktop_Environment="plasma-desktop"
-        # 窗口管理器
-        Window_Managers="i3-gaps"
-        # 任务栏
-        Taskbars="i3blocks"
+        # 窗口管理器以及任务栏工具
+        Window_Managers="i3-gaps i3blocks"
         # 程序启动器
         Application_Launchers="rofi"
+        # 背光
+        Backlight="light redshift"
     # 美化
         # 字体
         Fonts="fontconfig ttf-dejavu wqy-zenhei noto-fonts-emoji"
@@ -61,32 +55,36 @@ sudo pacman -S $(echo "
         Configuration_QT5="qt5ct breeze breeze-icons"
         # 窗口合成
         X_Compositor="compton"
+        # Grub2
+        Grub_Two="breeze-grub"
 
 
 ##### Internet (互联网) #####
     # 网络连接
-        # 网络管理            ⊢----管理器----⊣      ⊢----无线----⊣   ⊢无线AP⊣
-        Network_Managers="networkmanager plasma-nm iw wpa_supplicant hostapd proxychains-ng"
+        # 网络管理         ⊢----无线----⊣   ⊢无线AP⊣
+        Network_Managers="iw wpa_supplicant hostapd"
     # Web 浏览器
         # 基于 Gecko
-        Gecko_Based="firefox-developer-edition firefox-developer-edition-i18n-zh-cn"
+        Gecko_Based="firefox firefox-i18n-zh-cn flashplugin"
         # 基于 Blink
-        Blink_Based="chromium"
-        # 浏览器插件
-        Browser_Plugins="pepper-flash"
+        Blink_Based="chromium pepper-flash"
         # 控制台中的浏览器
         Console_Based="w3m imlib2"
     # 文件共享
         # 下载工具
-        Download_Managers="aria2 axel wget"
+        Download_Managers="aria2 wget ca-certificates"
         # BitTorrent 客户端
         BitTorrent_Clients="qbittorrent"
     # 沟通
         # 电子邮件客户端
-        Email_Clients="kube kmail"
+        Email_Clients="neomutt"
         # 即时消息客户端
             # IRC 客户端
-            IRC_Clients="quassel-monolithic"
+            IRC_Clients="weechat"
+            # 腾讯 QQ
+            QQ="deepin.com.qq.im gnome-settings-daemon"
+        # 远程控制
+        Remote_Control="teamviewer"
     # 新闻, RSS 和博客
         # 新闻聚合
         News_Aggregators="quiterss"
@@ -97,7 +95,7 @@ sudo pacman -S $(echo "
 ##### Multimedia (多媒体) #####
     # 图像
         # 图像查看
-        Image_Viewers="vimiv"
+        Image_Viewers="vimiv libgexiv2"
         # 图像处理
         Image_Processing="imagemagick"
         # 图像编辑
@@ -135,15 +133,13 @@ sudo pacman -S $(echo "
 
 ##### Utilities (实用程序) #####
     # 终端
-        # Shell
-        Command_Shells="fish"
         # 终端模拟
-        Terminal_Emulators="rxvt-unicode urxvt-perls konsole"
+        Terminal_Emulators="rxvt-unicode urxvt-perls"
         # 终端多路复用
         Terminal_multiplexers="tmux"
     # 文字输入
         # 输入法
-        Input_Methods="fcitx fcitx-rime fcitx-gtk3 fcitx-qt5 fcitx-configtool"
+        Input_Methods="fcitx fcitx-rime fcitx-gtk2 fcitx-gtk3 fcitx-qt5 fcitx-configtool"
     # 磁盘
         # 分区工具
         Partitioning_Tools="parted"
@@ -154,10 +150,10 @@ sudo pacman -S $(echo "
         # 磁盘使用情况显示
         Disk_Usage_Display="ncdu"
         # 磁盘状态分析
-        Analyzing_And_Monitoring="hdparm smartmontools gsmartcontrol"
+        Analyzing_And_Monitoring="hdparm smartmontools"
     # 系统
         # 任务管理
-        Task_Managers="htop ksystemlog"
+        Task_Managers="htop"
         # 系统监视
         System_Monitors="glances conky"
         # 系统信息查看
@@ -165,15 +161,15 @@ sudo pacman -S $(echo "
         # 蓝牙管理
         Bluetooth_Management="bluez blueman"
         # 电源管理
-        Power_Management="tlp powerdevil"
+        Power_Management="tlp"
         # 虚拟化
-        Virtualization="virtualbox virtualbox-host-modules-arch virtualbox-guest-iso"
+        Virtualization="virtualbox virtualbox-host-dkms virtualbox-guest-iso"
         # Pacman 相关工具
-        Pacman_Tools="expac pacutils"
+        Pacman_Tools="expac pacutils archlinuxcn-keyring"
         # 备份工具
         Full_System_Backup="squashfs-tools"
-        # 其它
-        Others="debootstrap debian-archive-keyring"
+        # Nspawn 相关工具
+        Nspawn="debootstrap debian-archive-keyring"
     # 数学
         # 计算器
         Calculator="bc calc"
@@ -181,9 +177,9 @@ sudo pacman -S $(echo "
 
 ##### Documents (文件) #####
     # 文件管理器
-    File_Managers="ranger dolphin"
+    File_Managers="ranger"
     # 文件同步
-    File_Synchronization="rsync grsync"
+    File_Synchronization="rsync"
     # 归档和压缩工具
     Archiving_And_Compression_Tools="lrzip lzip lzop p7zip unrar zip unzip arj par2cmdline sharutils"
     # 比较, 差异, 合并
@@ -202,10 +198,10 @@ sudo pacman -S $(echo "
         # Emacs 风格的文本编辑器
         Emacs_Style_Text_Editors="emacs"
         # Vi 风格的文本编辑器
-        Vi_Style_Text_Editors="neovim python-neovim"
+        Vi_Style_Text_Editors="gvim neovim python-neovim"
     # 办公
         # 办公套件
-        Office_Suites="libreoffice-fresh libreoffice-fresh-zh-cn"
+        Office_Suites="wps-office ttf-wps-fonts"
         # 数据库及其管理工具
         Database_Tools="mariadb"
     # 文件转换
@@ -216,6 +212,8 @@ sudo pacman -S $(echo "
         # CHM
         CHM="xchm"
     # 笔记
+        # Markdown 工具
+        Markdown="vnote-git"
         # 思维导图
         Mind_Mapping="vym"
     # 字典和词库
@@ -226,9 +224,11 @@ sudo pacman -S $(echo "
 
 ##### Security (安全) #####
     # 硬件安全
+        # 内核
+        Linux_Kernel="dkms linux-lts linux-lts-headers"
         # 微码
         Microcode="intel-ucode"
-        # MAC 地址欺骗
+        # MAC 地址随机化
         MAC_Address_Spoofing="macchanger"
     # 系统管理
         # 权限控制
@@ -236,11 +236,11 @@ sudo pacman -S $(echo "
         # 安全 Shell
         Secure_Shell="openssh"
     # 网络安全
-    Network_Security="wireshark-qt nmap"
+    Network_Security="wireshark-qt nmap gufw"
     # 屏幕锁
     Screen_Lockers="i3lock"
     # 密码管理
-    Password_Managers="keepassxc kgpg"
+    Password_Managers="keepassxc"
     # 密码学
         # 磁盘加密
         Disk_Encryption="gocryptfs"
@@ -255,13 +255,15 @@ sudo pacman -S $(echo "
     Build_Automation="cmake gradle"
     # API 文档浏览
     API_Documentation_Browsers="zeal"
+    # 集成开发环境
+    IDE="intellij-idea-ultimate-edition pycharm-professional webstorm"
     # 各语言工具     ⊢---shell---⊣   JSON
     Language_Tools="shellcheck shfmt jq"
     # 编程语言
         # 作为软件依赖的语言             ⊢------------Python3------------⊣  Haskell
         As_A_System_Dependent_Language="python python-pip python-setuptools ghc"
-        # 我的主要语言     ⊢-------C-------⊣    ⊢-----Java-----⊣   ⊢--JS--⊣
-        My_Main_Language="base-devel gdb clang jdk-openjdk kotlin nodejs npm"
+        # 我的主要语言     ⊢-------C-------⊣    ⊢-Java-⊣   ⊢--JS--⊣
+        My_Main_Language="base-devel gdb clang jdk kotlin nodejs npm"
         # 其它会用到的语言           ⊢--Go--⊣   Rust  ⊢--Ruby--⊣   Lua   DOT
         Other_Languages_To_Be_Used="go go-tools rust ruby rubygems lua graphviz"
 
@@ -281,11 +283,13 @@ sudo systemctl mask systemd-rfkill.service
 sudo systemctl mask systemd-rfkill.socket
 # MariaDB
 sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
-systemctl start mariadb.service
+sudo systemctl start mariadb.service
 mysql_secure_installation
-systemctl stop mariadb.service
+sudo systemctl stop mariadb.service
 # Microcode
 sudo grub-mkconfig -o /boot/grub/grub.cfg
+# UFW
+sudo systemctl enable ufw.service
 
 sync
 echo -e "$red >>>>> Software installation script has been quit. $reset"

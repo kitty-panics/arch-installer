@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v6.6.0
+# @Version: v6.6.1
 # @Mail:    ivlioioilvi@gmail.com
 
 
@@ -125,11 +125,11 @@ configure_The_System() {
     chmod 600 /mnt/boot/initramfs-linux*
 
     echo -e "$red >>>>> Change root into the new system. $reset"
-    curl -sL "https://raw.githubusercontent.com/Cool-Pan/dotfiles/master/tools/Arch/Install-SecondStep.sh" -o /mnt/root/Install-SecondStep.sh
-    chmod +x /mnt/root/Install-SecondStep.sh
+    curl -sL "https://raw.githubusercontent.com/Cool-Pan/arch-installer/master/bin/second.sh" -o /mnt/root/second.sh
+    chmod +x /mnt/root/second.sh
     sync
-    arch-chroot /mnt /root/Install-SecondStep.sh
-    rm -rf /mnt/root/Install-SecondStep.sh
+    arch-chroot /mnt /root/second.sh
+    rm -rf /mnt/root/second.sh
 }
 configure_The_System
 
