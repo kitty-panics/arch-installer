@@ -3,6 +3,8 @@
 ![License-MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Docs-Passing](https://img.shields.io/badge/Docs-Passing-green.svg)
 
+中文 | [English](../README.md)
+
 Arch Linux 快速安装脚本。
 
 ## 安装 Arch
