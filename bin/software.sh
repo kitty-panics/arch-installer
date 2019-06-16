@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v10.0.9
+# @Version: v10.4.5
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -17,7 +17,7 @@ echo -e "$green >>>>> Please enable Multilib and Testing repo. $reset"
 echo -e "$green >>>>> \"mirrorlist\" file will be edited.(Enter key continues) $reset"
 read -r temp_Edit_Mirrorlist
 sudo vi /etc/pacman.conf
-sudo pacman -Syyuu
+sudo pacman -Syyu
 
 echo -e "$red >>>>> Start Install Software (开始安装). $reset"
 sudo pacman -S $(echo "
@@ -27,12 +27,14 @@ sudo pacman -S $(echo "
         # Intel 显卡
         Intel="xf86-video-intel mesa lib32-mesa"
         # NVIDIA 显卡
-        Nvidia="nvidia-lts nvidia-utils lib32-nvidia-utils nvidia-settings"
+        Nvidia="nvidia nvidia-utils lib32-nvidia-utils nvidia-settings"
+        NVIDIA_Optimus="bumblebee virtualgl lib32-virtualgl bbswitch"
         # Vulkan
         Vulkan="vulkan-icd-loader lib32-vulkan-icd-loader vulkan-intel"
     # X Window 系统
         # Xorg 实现
         Xorg_Server="xorg-server xorg-xinit xorg-xhost"
+        Display_Manager="lightdm lightdm-gtk-greeter"
         # 触摸版设备
         Input_Devices="libinput xf86-input-libinput xorg-xinput gnome-tweaks"
         # 屏幕管理
@@ -63,8 +65,8 @@ sudo pacman -S $(echo "
 
 ##### Internet (互联网) #####
     # 网络连接
-        # 网络管理         ⊢----无线----⊣   ⊢无线AP⊣
-        Network_Managers="iw wpa_supplicant hostapd"
+        # 网络管理                                               ⊢----无线----⊣   ⊢无线AP⊣
+        Network_Managers="networkmanager network-manager-applet iw wpa_supplicant hostapd"
     # Web 浏览器
         # 基于 Gecko
         Gecko_Based="firefox firefox-i18n-zh-cn flashplugin"
@@ -81,8 +83,8 @@ sudo pacman -S $(echo "
         # E-Mail, IRC 客户端
         Multiple_Clients="thunderbird thunderbird-i18n-zh-cn"
         # 即时消息客户端
-            # 腾讯 QQ
-            QQ="deepin.com.qq.im gnome-settings-daemon"
+            # 腾讯的通讯工具
+            Tencent_IM="deepin.com.qq.im gnome-settings-daemon electronic-wechat"
         # 远程控制
         Remote_Control="teamviewer"
     # 新闻, RSS 和博客
@@ -151,7 +153,7 @@ sudo pacman -S $(echo "
         Analyzing_And_Monitoring="hdparm smartmontools"
     # 系统
         # 任务管理
-        Task_Managers="htop"
+        Task_Managers="htop cronie"
         # 系统监视
         System_Monitors="glances hddtemp python-bottle"
         # 系统信息查看
@@ -161,7 +163,7 @@ sudo pacman -S $(echo "
         # 电源管理
         Power_Management="tlp x86_energy_perf_policy"
         # 虚拟化
-        Virtualization="virtualbox virtualbox-host-dkms virtualbox-guest-iso"
+        Virtualization="virtualbox virtualbox-host-modules-arch virtualbox-guest-iso"
         # Pacman 相关工具
         Pacman_Tools="pacgraph expac pacutils lostfiles archlinuxcn-keyring"
         # Nspawn 相关工具
@@ -184,22 +186,15 @@ sudo pacman -S $(echo "
     File_Searching="fd tree"
     # 全文检索
     Full_Text_Searching="ripgrep fzf"
-    # 替代 cat
-    Cat_Replacement="bat"
-    # 替代 ls
-    Ls_Replacement="exa"
-    # 替代 man
-    Man_Replacement="tldr"
+    # 替代 cat, ls, man
+    Cat_Ls_Man="bat exa tldr"
     # 文字编辑
         # Emacs 风格的文本编辑器
         Emacs_Style_Text_Editors="emacs"
         # Vi 风格的文本编辑器
         Vi_Style_Text_Editors="gvim neovim python-neovim"
-    # 办公
         # 办公套件
         Office_Suites="wps-office ttf-wps-fonts"
-        # 数据库及其管理工具
-        Database_Tools="mariadb dbeaver"
     # 文件转换
     Document_Converters="pandoc dos2unix figlet"
     # 阅读和查看
@@ -220,8 +215,6 @@ sudo pacman -S $(echo "
 
 ##### Security (安全) #####
     # 硬件安全
-        # 内核
-        Linux_Kernel="dkms linux-lts linux-lts-headers"
         # 微码
         Microcode="intel-ucode"
         # MAC 地址随机化
@@ -254,10 +247,14 @@ sudo pacman -S $(echo "
     Build_Automation="cmake gradle"
     # API 文档浏览
     API_Documentation_Browsers="zeal"
-    # 集成开发环境
-    IDE="intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre pycharm-professional webstorm webstorm-jre"
+    # 数据库及其管理工具
+    Database_Tools="mariadb dbeaver"
+    # 容器
+    Container="docker"
     # 调试工具
     Debug="strace ctags"
+    # 集成开发环境
+    IDE="android-studio intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre pycharm-professional webstorm webstorm-jre"
     # 各语言工具    ⊢----shell----⊣  JSON
     Language_Tools="shellcheck shfmt jq"
     # 编程语言
@@ -271,26 +268,41 @@ sudo pacman -S $(echo "
 " | grep "=" | cut -d"=" -f2 | xargs echo)
 sync
 
-# Advanced Linux Sound Architecture
+# bumblebee
+sudo gpasswd -a $USER bumblebee
+sudo systemctl enable bumblebeed.service
+
+# lightdm
+sudo systemctl enable lightdm.service
+
+# networkmanager
+sudo systemctl enable NetworkManager.service
+
+# alsa-utils
 amixer sset Master unmute
 amixer sset Speaker unmute
 amixer sset Headphone unmute
-# PulseAudio
+
+# pulseaudio
 pactl set-sink-mute 0 false
-# Tlp
+
+# tlp
 sudo systemctl enable tlp.service
 sudo systemctl enable tlp-sleep.service
 sudo systemctl mask systemd-rfkill.service
 sudo systemctl mask systemd-rfkill.socket
-# MariaDB
+
+# intel-ucode
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+# ufw
+sudo systemctl enable ufw.service
+
+# mariadb
 sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 sudo systemctl start mariadb.service
 mysql_secure_installation
 sudo systemctl stop mariadb.service
-# Microcode
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-# UFW
-sudo systemctl enable ufw.service
 
 sync
 echo -e "$red >>>>> Software installation script has been quit. $reset"
