@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v10.4.5
+# @Version: v10.4.6
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -28,7 +28,6 @@ sudo pacman -S $(echo "
         Intel="xf86-video-intel mesa lib32-mesa"
         # NVIDIA 显卡
         Nvidia="nvidia nvidia-utils lib32-nvidia-utils nvidia-settings"
-        NVIDIA_Optimus="bumblebee virtualgl lib32-virtualgl bbswitch"
         # Vulkan
         Vulkan="vulkan-icd-loader lib32-vulkan-icd-loader vulkan-intel"
     # X Window 系统
@@ -65,11 +64,11 @@ sudo pacman -S $(echo "
 
 ##### Internet (互联网) #####
     # 网络连接
-        # 网络管理                                               ⊢----无线----⊣   ⊢无线AP⊣
-        Network_Managers="networkmanager network-manager-applet iw wpa_supplicant hostapd"
+        # 网络管理                                                       ⊢----无线----⊣   ⊢无线AP⊣
+        Network_Managers="networkmanager network-manager-applet dnsmasq iw wpa_supplicant hostapd"
     # Web 浏览器
         # 基于 Gecko
-        Gecko_Based="firefox firefox-i18n-zh-cn flashplugin"
+        Gecko_Based="firefox flashplugin"
         # 基于 Blink
         Blink_Based="chromium libvdpau pepper-flash"
         # 控制台中的浏览器
@@ -81,7 +80,7 @@ sudo pacman -S $(echo "
         BitTorrent_Clients="qbittorrent"
     # 沟通
         # E-Mail, IRC 客户端
-        Multiple_Clients="thunderbird thunderbird-i18n-zh-cn"
+        Multiple_Clients="thunderbird"
         # 即时消息客户端
             # 腾讯的通讯工具
             Tencent_IM="deepin.com.qq.im gnome-settings-daemon electronic-wechat"
@@ -235,9 +234,6 @@ sudo pacman -S $(echo "
         Disk_Encryption="gocryptfs"
     # 垃圾管理 (安全删除)
     Trash_Management="trash-cli"
-    # 补丁
-        # 解决安装 Perl 的 Mojo::Weixin 模块时的问题
-        Mojo_Weixin="perl-io-socket-ssl perl-encode-locale perl-crypt-openssl-bignum perl-crypt-openssl-rsa"
 
 
 ##### Programming (编程) #####
@@ -267,10 +263,6 @@ sudo pacman -S $(echo "
 
 " | grep "=" | cut -d"=" -f2 | xargs echo)
 sync
-
-# bumblebee
-sudo gpasswd -a $USER bumblebee
-sudo systemctl enable bumblebeed.service
 
 # lightdm
 sudo systemctl enable lightdm.service
