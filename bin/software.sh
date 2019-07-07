@@ -32,7 +32,7 @@ sudo pacman -S $(echo "
         Vulkan="vulkan-icd-loader lib32-vulkan-icd-loader vulkan-intel"
     # X Window 系统
         # Xorg 实现
-        Xorg_Server="xorg-server xorg-xinit xorg-xhost"
+        Xorg_Server="xorg-server xorg-xinit xorg-xhost numlockx"
         Display_Manager="lightdm lightdm-gtk-greeter"
         # 触摸版设备
         Input_Devices="libinput xf86-input-libinput xorg-xinput"
