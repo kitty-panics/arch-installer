@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v10.4.6
+# @Version: v10.5.6
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -27,7 +27,7 @@ sudo pacman -S $(echo "
         # Intel 显卡
         Intel="xf86-video-intel mesa lib32-mesa"
         # NVIDIA 显卡
-        Nvidia="nvidia nvidia-utils lib32-nvidia-utils nvidia-settings"
+        Nvidia="nvidia-lts nvidia-utils lib32-nvidia-utils"
         # Vulkan
         Vulkan="vulkan-icd-loader lib32-vulkan-icd-loader vulkan-intel"
     # X Window 系统
@@ -35,14 +35,14 @@ sudo pacman -S $(echo "
         Xorg_Server="xorg-server xorg-xinit xorg-xhost"
         Display_Manager="lightdm lightdm-gtk-greeter"
         # 触摸版设备
-        Input_Devices="libinput xf86-input-libinput xorg-xinput gnome-tweaks"
+        Input_Devices="libinput xf86-input-libinput xorg-xinput"
         # 屏幕管理
-        Screen_Management="xorg-xrandr arandr"
+        Screen_Management="xorg-xrandr"
     # 桌面环境
         # 窗口管理器
         Window_Managers="i3-gaps"
-        # 任务栏工具
-        Task_Bar="i3blocks sysstat"
+        # 狀態欄
+        i3-Bar="polybar"
         # 程序启动器
         Application_Launchers="rofi"
         # 背光
@@ -50,27 +50,29 @@ sudo pacman -S $(echo "
     # 美化
         # 字体
         Fonts="fontconfig ttf-dejavu wqy-zenhei noto-fonts-emoji"
-        # 壁纸设置
-        Wallpaper_Setters="feh jpegexiforient archlinux-wallpaper"
-        # 配置 GTK+
-        Configuration_GTK="dconf dconf-editor breeze-gtk"
-        # 配置 QT5
-        Configuration_QT5="qt5ct breeze breeze-icons"
         # 窗口合成
         X_Compositor="compton compton-conf-git"
+        # 壁纸设置
+        Wallpaper_Setters="feh jpegexiforient archlinux-wallpaper"
+        # GTK+ 样式主题
+        Configuration_GTK="dconf breeze-gtk"
+        # QT5 样式主题
+        Configuration_QT5="qt5ct breeze"
+        # 图标主题
+        Icon_Theme="papirus-icon-theme breeze-icons"
         # Grub2
         Grub_Two="breeze-grub"
 
 
 ##### Internet (互联网) #####
     # 网络连接
-        # 网络管理                                                       ⊢----无线----⊣   ⊢无线AP⊣
-        Network_Managers="networkmanager network-manager-applet dnsmasq iw wpa_supplicant hostapd"
+        # 网络管理                                              ⊢无线AP⊣⊢-----无线-----⊣
+        Network_Managers="networkmanager network-manager-applet dnsmasq wpa_supplicant iw"
     # Web 浏览器
         # 基于 Gecko
-        Gecko_Based="firefox flashplugin"
+        Gecko_Based="firefox firefox-i18n-zh-cn flashplugin libvdpau"
         # 基于 Blink
-        Blink_Based="chromium libvdpau pepper-flash"
+        Blink_Based="chromium pepper-flash"
         # 控制台中的浏览器
         Console_Based="w3m imlib2"
     # 文件共享
@@ -80,10 +82,10 @@ sudo pacman -S $(echo "
         BitTorrent_Clients="qbittorrent"
     # 沟通
         # E-Mail, IRC 客户端
-        Multiple_Clients="thunderbird"
+        Multiple_Clients="thunderbird thunderbird-i18n-zh-cn"
         # 即时消息客户端
             # 腾讯的通讯工具
-            Tencent_IM="deepin.com.qq.im gnome-settings-daemon electronic-wechat"
+            Tencent_IM="electronic-wechat"
         # 远程控制
         Remote_Control="teamviewer"
     # 新闻, RSS 和博客
@@ -126,8 +128,6 @@ sudo pacman -S $(echo "
         Screencast="obs-studio libxcomposite"
     # 移动设备管理
     Mobile_Device_Managers="android-tools android-file-transfer libmtp kdeconnect sshfs"
-    # 数字发行平台
-    Digital_Distribution="steam"
 
 
 ##### Utilities (实用程序) #####
@@ -141,20 +141,20 @@ sudo pacman -S $(echo "
         Input_Methods="fcitx fcitx-rime fcitx-gtk2 fcitx-gtk3 fcitx-qt5 fcitx-configtool"
     # 磁盘
         # 分区工具
-        Partitioning_Tools="parted gparted"
+        Partitioning_Tools="parted"
         # 格式化工具
         Formatting_Tools="btrfs-progs dosfstools exfat-utils f2fs-tools nilfs-utils ntfs-3g"
         # 挂载工具
-        Mount_Tools="udisks2"
+        Mount_Tools="udisks2 gptfdisk"
         # 磁盘使用情况显示
         Disk_Usage_Display="ncdu lsof"
-        # 磁盘状态分析
+        # 磁盘健康分析
         Analyzing_And_Monitoring="hdparm smartmontools"
     # 系统
         # 任务管理
         Task_Managers="htop cronie"
         # 系统监视
-        System_Monitors="glances hddtemp python-bottle"
+        System_Monitors="glances hddtemp python-bottle sysstat"
         # 系统信息查看
         System_Information_Viewers="neofetch"
         # 蓝牙管理
@@ -162,7 +162,10 @@ sudo pacman -S $(echo "
         # 电源管理
         Power_Management="tlp x86_energy_perf_policy"
         # 虚拟化
-        Virtualization="virtualbox virtualbox-host-modules-arch virtualbox-guest-iso"
+            # 虛擬機
+            Virtualization="virtualbox virtualbox-host-dkms virtualbox-guest-iso"
+            # 容器
+            Container="docker"
         # Pacman 相关工具
         Pacman_Tools="pacgraph expac pacutils lostfiles archlinuxcn-keyring"
         # Nspawn 相关工具
@@ -213,6 +216,8 @@ sudo pacman -S $(echo "
 
 
 ##### Security (安全) #####
+    # 内核
+    Kernel="linux-lts linux-lts-headers dkms"
     # 硬件安全
         # 微码
         Microcode="intel-ucode"
@@ -226,14 +231,12 @@ sudo pacman -S $(echo "
     # 网络安全
     Network_Security="wireshark-qt nmap gufw"
     # 屏幕锁
-    Screen_Lockers="i3lock"
+    Screen_Lockers="i3lock-color"
     # 密码管理
     Password_Managers="keepassxc"
     # 密码学
         # 磁盘加密
         Disk_Encryption="gocryptfs"
-    # 垃圾管理 (安全删除)
-    Trash_Management="trash-cli"
 
 
 ##### Programming (编程) #####
@@ -245,8 +248,6 @@ sudo pacman -S $(echo "
     API_Documentation_Browsers="zeal"
     # 数据库及其管理工具
     Database_Tools="mariadb dbeaver"
-    # 容器
-    Container="docker"
     # 调试工具
     Debug="strace ctags"
     # 集成开发环境
@@ -260,6 +261,15 @@ sudo pacman -S $(echo "
         My_Main_Language="base-devel gdb clang jdk8-openjdk kotlin nodejs npm typescript"
         # 其它会用到的语言           C#   ⊢--Go--⊣   Rust  ⊢--Ruby--⊣   Lua   DOT
         Other_Languages_To_Be_Used="mono go go-tools rust ruby rubygems lua graphviz"
+
+
+##### Programming (编程) #####
+    # 数字发行平台
+    Digital_Distribution="steam"
+    # 游戏模拟器
+    Video_Game_Platform_Emulators="lutris ppsspp"
+    # 模擬類游戏
+    Simulation="hmcl"
 
 " | grep "=" | cut -d"=" -f2 | xargs echo)
 sync
