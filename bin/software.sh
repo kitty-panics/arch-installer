@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v10.5.8
+# @Version: v10.5.9
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -135,7 +135,7 @@ sudo pacman -S $(echo "
 ##### Utilities (实用程序) #####
     # 终端
         # 终端模拟
-        Terminal_Emulators="rxvt-unicode gtk2-perl urxvt-perls"
+        Terminal_Emulators="alacritty alacritty-terminfo"
         # 终端多路复用
         Terminal_multiplexers="tmux"
     # 文字输入
@@ -194,7 +194,7 @@ sudo pacman -S $(echo "
         # Emacs 风格的文本编辑器
         Emacs_Style_Text_Editors="emacs"
         # Vi 风格的文本编辑器
-        Vi_Style_Text_Editors="gvim neovim python-neovim"
+        Vi_Style_Text_Editors="gvim neovim python-neovim xsel"
         # 办公套件
         Office_Suites="wps-office ttf-wps-fonts"
     # 文件转换
