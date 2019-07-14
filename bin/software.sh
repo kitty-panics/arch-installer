@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v10.5.6
+# @Version: v10.5.8
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -32,42 +32,41 @@ sudo pacman -S $(echo "
         Vulkan="vulkan-icd-loader lib32-vulkan-icd-loader vulkan-intel"
     # X Window 系统
         # Xorg 实现
-        Xorg_Server="xorg-server xorg-xinit xorg-xhost numlockx"
-        Display_Manager="lightdm lightdm-gtk-greeter"
+        Xorg_Server="xorg-server xorg-xmodmap xorg-xrdb xorg-xhost numlockx"
         # 触摸版设备
         Input_Devices="libinput xf86-input-libinput xorg-xinput"
         # 屏幕管理
         Screen_Management="xorg-xrandr"
     # 桌面环境
+        # 顯示管理器
+        Display_Manager="lightdm lightdm-gtk-greeter"
         # 窗口管理器
         Window_Managers="i3-gaps"
-        # 狀態欄
-        i3-Bar="polybar"
         # 程序启动器
         Application_Launchers="rofi"
         # 背光
-        Backlight="light redshift"
+        Backlight="light"
     # 美化
         # 字体
         Fonts="fontconfig ttf-dejavu wqy-zenhei noto-fonts-emoji"
         # 窗口合成
         X_Compositor="compton compton-conf-git"
-        # 壁纸设置
+        # 壁紙設置工具及壁紙
         Wallpaper_Setters="feh jpegexiforient archlinux-wallpaper"
         # GTK+ 样式主题
-        Configuration_GTK="dconf breeze-gtk"
+        Configuration_GTK="arc-gtk-theme"
         # QT5 样式主题
-        Configuration_QT5="qt5ct breeze"
+        Configuration_QT5="qt5ct kvantum-qt5"
         # 图标主题
-        Icon_Theme="papirus-icon-theme breeze-icons"
-        # Grub2
-        Grub_Two="breeze-grub"
+        Icon_Themes="papirus-icon-theme"
+        # 光标主题
+        Cursor_Themes="capitaine-cursors"
 
 
 ##### Internet (互联网) #####
     # 网络连接
-        # 网络管理                                              ⊢无线AP⊣⊢-----无线-----⊣
-        Network_Managers="networkmanager network-manager-applet dnsmasq wpa_supplicant iw"
+        # 网络管理                              ⊢--AP--⊣ ⊢-----WiFi-----⊣
+        Network_Managers="network-manager-applet dnsmasq wpa_supplicant iw"
     # Web 浏览器
         # 基于 Gecko
         Gecko_Based="firefox firefox-i18n-zh-cn flashplugin libvdpau"
@@ -76,21 +75,24 @@ sudo pacman -S $(echo "
         # 控制台中的浏览器
         Console_Based="w3m imlib2"
     # 文件共享
-        # 下载工具
-        Download_Managers="aria2 wget ca-certificates"
+        # 通用的下载工具
+        Download_Managers="aria2 axel wget ca-certificates"
         # BitTorrent 客户端
-        BitTorrent_Clients="qbittorrent"
+        BitTorrent_Clients="transmission-cli"
     # 沟通
-        # E-Mail, IRC 客户端
-        Multiple_Clients="thunderbird thunderbird-i18n-zh-cn"
-        # 即时消息客户端
-            # 腾讯的通讯工具
-            Tencent_IM="electronic-wechat"
-        # 远程控制
-        Remote_Control="teamviewer"
+        # E-Mail 客户端
+        Email_Clients="neomutt"
+        # IRC 客户端
+        IRC_Clients="weechat"
+        # XMPP 客户端
+        XMPP_Clients="profanity"
+        # 其它 IM 客户端
+        Other_IM_Clients="electronic-wechat"
+        # 远程桌面
+        Remote_Desktop="teamviewer"
     # 新闻, RSS 和博客
         # 新闻聚合
-        News_Aggregators="quiterss"
+        News_Aggregators="newsboat quiterss"
         # 博客引擎
         Blog_Engines="hugo pygmentize"
 
@@ -98,11 +100,11 @@ sudo pacman -S $(echo "
 ##### Multimedia (多媒体) #####
     # 图像
         # 图像查看
-        Image_Viewers="vimiv libgexiv2"
+        Image_Viewers="viewnior"
         # 图像处理
         Image_Processing="imagemagick imagemagick-doc"
         # 图像编辑
-        Raster_Graphics_Editors="krita"
+        Raster_Graphics_Editors="photoflare"
         # 3D 图形
         3D_Computer_Graphics="blender"
         # 截图
@@ -121,13 +123,13 @@ sudo pacman -S $(echo "
         Audio_Editors="audacity"
     # 视频
         # 视频播放
-        Video_Players="mpv"
+        Video_Players="mpv smplayer"
         # 视频转换
-        Video_Converters="ffmpeg"
+        Video_Converters="ffmpeg handbrake"
         # 录屏
         Screencast="obs-studio libxcomposite"
     # 移动设备管理
-    Mobile_Device_Managers="android-tools android-file-transfer libmtp kdeconnect sshfs"
+    Mobile_Device_Managers="android-tools android-file-transfer libmtp"
 
 
 ##### Utilities (实用程序) #####
@@ -149,25 +151,23 @@ sudo pacman -S $(echo "
         # 磁盘使用情况显示
         Disk_Usage_Display="ncdu lsof"
         # 磁盘健康分析
-        Analyzing_And_Monitoring="hdparm smartmontools"
+        Analyzing_And_Monitoring="smartmontools hdparm"
     # 系统
         # 任务管理
         Task_Managers="htop cronie"
         # 系统监视
-        System_Monitors="glances hddtemp python-bottle sysstat"
+        System_Monitors="glances hddtemp python-bottle strace sysstat"
+        # 硬件传感器监控
+            # 温度
+            lm_sensors="lm_sensors psensor"
         # 系统信息查看
         System_Information_Viewers="neofetch"
         # 蓝牙管理
         Bluetooth_Management="bluez bluez-utils blueman"
         # 电源管理
         Power_Management="tlp x86_energy_perf_policy"
-        # 虚拟化
-            # 虛擬機
-            Virtualization="virtualbox virtualbox-host-dkms virtualbox-guest-iso"
-            # 容器
-            Container="docker"
-        # Pacman 相关工具
-        Pacman_Tools="pacgraph expac pacutils lostfiles archlinuxcn-keyring"
+        # Pacman 管理工具
+        Pacman_Management_Tools="expac pacgraph pacutils lostfiles pacman-contrib archlinuxcn-keyring"
         # Nspawn 相关工具
         Nspawn="debootstrap debian-archive-keyring"
     # 数学
@@ -177,7 +177,7 @@ sudo pacman -S $(echo "
 
 ##### Documents (文件) #####
     # 文件管理器
-    File_Managers="ranger python-chardet highlight libcaca atool"
+    File_Managers="ranger atool highlight libcaca python-chardet"
     # 文件同步
     File_Synchronization="rsync"
     # 归档和压缩工具
@@ -201,9 +201,11 @@ sudo pacman -S $(echo "
     Document_Converters="pandoc dos2unix figlet"
     # 阅读和查看
         # PDF 和 DjVu
-        PDF_And_DjVu="evince"
+        PDF_And_DjVu="xreader"
+        # 电子书
+        E_Book="fbreader"
         # CHM
-        CHM="kchmviewer"
+        CHM="xchm"
     # 笔记
         # Markdown 工具
         Markdown="vnote-git"
@@ -229,7 +231,9 @@ sudo pacman -S $(echo "
         # 安全 Shell
         Secure_Shell="openssh x11-ssh-askpass xorg-xauth"
     # 网络安全
-    Network_Security="wireshark-qt nmap gufw"
+    Network_Security="nmap wireshark-qt"
+    # 防火墙
+    Firewall_Management="gufw"
     # 屏幕锁
     Screen_Lockers="i3lock-color"
     # 密码管理
@@ -240,20 +244,23 @@ sudo pacman -S $(echo "
 
 
 ##### Programming (编程) #####
+    # 数据库及其管理工具
+    Database_Tools="mariadb dbeaver"
+    # 虚拟化
+        # 虛擬機
+        Virtualization="virtualbox virtualbox-host-dkms virtualbox-guest-iso"
+        # 容器
+        Container="docker"
     # 版本控制系统
     Version_Control_Systems="git"
     # 自动化构建工具
     Build_Automation="cmake gradle"
-    # API 文档浏览
-    API_Documentation_Browsers="zeal"
-    # 数据库及其管理工具
-    Database_Tools="mariadb dbeaver"
-    # 调试工具
-    Debug="strace ctags"
     # 集成开发环境
     IDE="android-studio intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre pycharm-professional webstorm webstorm-jre"
-    # 各语言工具    ⊢----shell----⊣  JSON
-    Language_Tools="shellcheck shfmt jq"
+    # 各语言工具  JSON ⊢----shell----⊣   Tag
+    Language_Tools="jq shellcheck shfmt ctags"
+    # API 文档浏览
+    API_Documentation_Browsers="zeal"
     # 编程语言
         # 作为软件依赖的语言             ⊢------------Python3------------⊣  Haskell
         As_A_System_Dependent_Language="python python-pip python-setuptools ghc"
@@ -267,7 +274,7 @@ sudo pacman -S $(echo "
     # 数字发行平台
     Digital_Distribution="steam"
     # 游戏模拟器
-    Video_Game_Platform_Emulators="lutris ppsspp"
+    Video_Game_Platform_Emulators="ppsspp"
     # 模擬類游戏
     Simulation="hmcl"
 
