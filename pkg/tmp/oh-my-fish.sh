@@ -8,7 +8,7 @@
 mkdir -p "$HOME/.cache/pkg-tmp"
 
 # 下载包
-git clone --depth=1 https://github.com/oh-my-fish/oh-my-fish "$HOME/.config/omf"
+git clone --depth=1 https://github.com/oh-my-fish/oh-my-fish "$HOME/.config/Manual/oh-my-fish"
 
 # 安装包
 # :

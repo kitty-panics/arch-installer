@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v10.5.9
+# @Version: v10.6.0
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -198,7 +198,7 @@ sudo pacman -S $(echo "
         # 办公套件
         Office_Suites="wps-office ttf-wps-fonts"
     # 文件转换
-    Document_Converters="pandoc dos2unix figlet"
+    Document_Converters="dos2unix figlet"
     # 阅读和查看
         # PDF 和 DjVu
         PDF_And_DjVu="xreader"
