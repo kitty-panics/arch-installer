@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v10.6.0
+# @Version: v10.6.5
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -27,12 +27,12 @@ sudo pacman -S $(echo "
         # Intel 显卡
         Intel="xf86-video-intel mesa lib32-mesa"
         # NVIDIA 显卡
-        Nvidia="nvidia-lts nvidia-utils lib32-nvidia-utils"
+        Nvidia="nvidia-dkms nvidia-utils lib32-nvidia-utils"
         # Vulkan
         Vulkan="vulkan-icd-loader lib32-vulkan-icd-loader vulkan-intel"
     # X Window 系统
         # Xorg 实现
-        Xorg_Server="xorg-server xorg-xmodmap xorg-xrdb xorg-xhost numlockx"
+        Xorg_Server="xorg-server xorg-xmodmap xorg-xhost numlockx"
         # 触摸版设备
         Input_Devices="libinput xf86-input-libinput xorg-xinput"
         # 屏幕管理
@@ -80,19 +80,17 @@ sudo pacman -S $(echo "
         # BitTorrent 客户端
         BitTorrent_Clients="transmission-cli"
     # 沟通
-        # E-Mail 客户端
-        Email_Clients="neomutt"
         # IRC 客户端
-        IRC_Clients="weechat"
+        IRC_Clients="hexchat"
         # XMPP 客户端
-        XMPP_Clients="profanity"
+        XMPP_Clients="psi"
         # 其它 IM 客户端
         Other_IM_Clients="electronic-wechat"
         # 远程桌面
         Remote_Desktop="teamviewer"
     # 新闻, RSS 和博客
         # 新闻聚合
-        News_Aggregators="newsboat quiterss"
+        News_Aggregators="quiterss"
         # 博客引擎
         Blog_Engines="hugo pygmentize"
 
@@ -102,7 +100,7 @@ sudo pacman -S $(echo "
         # 图像查看
         Image_Viewers="viewnior"
         # 图像处理
-        Image_Processing="imagemagick imagemagick-doc"
+        Image_Processing="imagemagick"
         # 图像编辑
         Raster_Graphics_Editors="photoflare"
         # 3D 图形
@@ -116,14 +114,14 @@ sudo pacman -S $(echo "
             # 驱动和接口
             Drivers_And_Interface="alsa-firmware alsa-utils"
             # 声音服务
-            Sound_Servers="pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol-qt pulseeffects"
+            Sound_Servers="pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol-qt"
         # 音频播放
         Audio_Players="cmus flac libmad faad2 libmp4v2"
         # 音频编辑
         Audio_Editors="audacity"
     # 视频
         # 视频播放
-        Video_Players="mpv smplayer"
+        Video_Players="mpv"
         # 视频转换
         Video_Converters="ffmpeg handbrake"
         # 录屏
@@ -256,7 +254,7 @@ sudo pacman -S $(echo "
     # 自动化构建工具
     Build_Automation="cmake gradle"
     # 集成开发环境
-    IDE="android-studio intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre pycharm-professional webstorm webstorm-jre"
+    IDE="intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre pycharm-professional webstorm webstorm-jre"
     # 各语言工具  JSON ⊢----shell----⊣   Tag
     Language_Tools="jq shellcheck shfmt ctags"
     # API 文档浏览
