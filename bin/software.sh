@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v10.6.5
+# @Version: v10.6.8
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -28,6 +28,7 @@ sudo pacman -S $(echo "
         Intel="xf86-video-intel mesa lib32-mesa"
         # NVIDIA 显卡
         Nvidia="nvidia-dkms nvidia-utils lib32-nvidia-utils"
+        NVIDIA_Optimus="bumblebee virtualgl lib32-virtualgl bbswitch-dkms"
         # Vulkan
         Vulkan="vulkan-icd-loader lib32-vulkan-icd-loader vulkan-intel"
     # X Window 系统
@@ -80,10 +81,6 @@ sudo pacman -S $(echo "
         # BitTorrent 客户端
         BitTorrent_Clients="transmission-cli"
     # 沟通
-        # IRC 客户端
-        IRC_Clients="hexchat"
-        # XMPP 客户端
-        XMPP_Clients="psi"
         # 其它 IM 客户端
         Other_IM_Clients="electronic-wechat"
         # 远程桌面
@@ -278,6 +275,10 @@ sudo pacman -S $(echo "
 
 " | grep "=" | cut -d"=" -f2 | xargs echo)
 sync
+
+# bumblebee
+sudo gpasswd -a $USER bumblebee
+sudo systemctl enable bumblebeed.service
 
 # lightdm
 sudo systemctl enable lightdm.service
