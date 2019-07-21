@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v10.6.9
+# @Version: v10.8.2
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -98,7 +98,7 @@ sudo pacman -S $(echo "
         # 图像处理
         Image_Processing="imagemagick"
         # 图像编辑
-        Raster_Graphics_Editors="photoflare"
+        Raster_Graphics_Editors="gimp"
         # 3D 图形
         3D_Computer_Graphics="blender"
         # 截图
@@ -256,8 +256,8 @@ sudo pacman -S $(echo "
     # API 文档浏览
     API_Documentation_Browsers="zeal"
     # 编程语言
-        # 作为软件依赖的语言             ⊢------------Python3------------⊣  Haskell
-        As_A_System_Dependent_Language="python python-pip python-setuptools ghc"
+        # 作为软件依赖的语言             ⊢------------Python3------------⊣    ⊢------------Python3------------⊣   Haskell
+        As_A_System_Dependent_Language="python python-pip python-setuptools python2 python2-pip python2-setuptools ghc"
         # 我的主要语言     ⊢-------C-------⊣    ⊢-----Java-----⊣    ⊢--JS--⊣  TypeScript
         My_Main_Language="base-devel gdb clang jdk8-openjdk kotlin nodejs npm typescript"
         # 其它会用到的语言           C#   ⊢--Go--⊣   Rust  ⊢--Ruby--⊣   Lua   DOT
@@ -271,6 +271,12 @@ sudo pacman -S $(echo "
     Video_Game_Platform_Emulators="ppsspp"
     # 模擬類游戏
     Simulation="hmcl"
+
+
+##### 处理软件缺失的依赖 #####
+    # Warframe / 星际战甲 (需要手动从 AUR 中安装 xboxdrv 包)
+    Handle_Warframe="python-dbus-common python2-dbus"
+
 
 " | grep "=" | cut -d"=" -f2 | xargs echo)
 sync
