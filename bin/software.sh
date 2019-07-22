@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v10.8.2
+# @Version: v10.8.3
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -27,7 +27,7 @@ sudo pacman -S $(echo "
         # Intel 显卡
         Intel="xf86-video-intel mesa lib32-mesa"
         # NVIDIA 显卡
-        Nvidia="nvidia-dkms nvidia-utils lib32-nvidia-utils"
+        Nvidia="nvidia-dkms nvidia-utils lib32-nvidia-utils bbswitch-dkms"
         # Vulkan
         Vulkan="vulkan-icd-loader lib32-vulkan-icd-loader vulkan-intel"
     # X Window 系统
