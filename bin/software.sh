@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v10.8.3
+# @Version: v10.8.5
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -25,11 +25,11 @@ sudo pacman -S $(echo "
 ##### Graphical (图形) #####
     # 视频 (显卡)驱动
         # Intel 显卡
-        Intel="xf86-video-intel mesa lib32-mesa"
+        Intel="mesa lib32-mesa"
         # NVIDIA 显卡
-        Nvidia="nvidia-dkms nvidia-utils lib32-nvidia-utils bbswitch-dkms"
+        Nvidia="nvidia-dkms nvidia-utils lib32-nvidia-utils"
         # Vulkan
-        Vulkan="vulkan-icd-loader lib32-vulkan-icd-loader vulkan-intel"
+        Vulkan="vulkan-icd-loader lib32-vulkan-icd-loader"
     # X Window 系统
         # Xorg 实现
         Xorg_Server="xorg-server xorg-xmodmap xorg-xhost numlockx"
@@ -99,6 +99,8 @@ sudo pacman -S $(echo "
         Image_Processing="imagemagick"
         # 图像编辑
         Raster_Graphics_Editors="gimp"
+        # 矢量图形编辑器
+        Vector_Graphics_Editors="inkscape"
         # 3D 图形
         3D_Computer_Graphics="blender"
         # 截图
@@ -274,7 +276,7 @@ sudo pacman -S $(echo "
 
 
 ##### 处理软件缺失的依赖 #####
-    # Warframe / 星际战甲 (需要手动从 AUR 中安装 xboxdrv 包)
+    # Warframe / 星际战甲 (需手动从 AUR 中安装 xboxdrv 包)
     Handle_Warframe="python-dbus-common python2-dbus"
 
 
