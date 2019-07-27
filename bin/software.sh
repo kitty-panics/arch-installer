@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v10.8.5
+# @Version: v10.9.2
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -17,9 +17,12 @@ echo -e "$green >>>>> Please enable Multilib and Testing repo. $reset"
 echo -e "$green >>>>> \"mirrorlist\" file will be edited.(Enter key continues) $reset"
 read -r temp_Edit_Mirrorlist
 sudo vi /etc/pacman.conf
-sudo pacman -Syyu
+sudo pacman -Syyuu
 
 echo -e "$red >>>>> Start Install Software (开始安装). $reset"
+# 移除基本系统中的包：
+# + vi
+# + nano
 sudo pacman -S $(echo "
 
 ##### Graphical (图形) #####
@@ -50,7 +53,7 @@ sudo pacman -S $(echo "
         # 字体
         Fonts="fontconfig ttf-dejavu wqy-zenhei noto-fonts-emoji"
         # 窗口合成
-        X_Compositor="compton compton-conf-git"
+        X_Compositor="compton"
         # 壁紙設置工具及壁紙
         Wallpaper_Setters="feh jpegexiforient archlinux-wallpaper"
         # GTK+ 样式主题
@@ -65,11 +68,11 @@ sudo pacman -S $(echo "
 
 ##### Internet (互联网) #####
     # 网络连接
-        # 网络管理                              ⊢--AP--⊣ ⊢-----WiFi-----⊣
+        # 网络管理                               ⊢-AP--⊣ ⊢-----WiFi------⊣
         Network_Managers="network-manager-applet dnsmasq wpa_supplicant iw"
     # Web 浏览器
         # 基于 Gecko
-        Gecko_Based="firefox firefox-i18n-zh-cn flashplugin libvdpau"
+        Gecko_Based="firefox-developer-edition firefox-developer-edition-i18n-zh-cn flashplugin libvdpau"
         # 基于 Blink
         Blink_Based="chromium pepper-flash"
         # 控制台中的浏览器
@@ -80,10 +83,7 @@ sudo pacman -S $(echo "
         # BitTorrent 客户端
         BitTorrent_Clients="transmission-cli"
     # 沟通
-        # 其它 IM 客户端
-        Other_IM_Clients="electronic-wechat"
-        # 远程桌面
-        Remote_Desktop="teamviewer"
+        Email_IRC_XMPP_Clients="thunderbird thunderbird-i18n-zh-cn"
     # 新闻, RSS 和博客
         # 新闻聚合
         News_Aggregators="quiterss"
@@ -163,7 +163,7 @@ sudo pacman -S $(echo "
         # 电源管理
         Power_Management="tlp x86_energy_perf_policy"
         # Pacman 管理工具
-        Pacman_Management_Tools="expac pacgraph pacutils lostfiles pacman-contrib archlinuxcn-keyring"
+        Pacman_Management_Tools="expac pacgraph pacutils lostfiles pacman-contrib"
         # Nspawn 相关工具
         Nspawn="debootstrap debian-archive-keyring"
     # 数学
@@ -190,11 +190,11 @@ sudo pacman -S $(echo "
         # Emacs 风格的文本编辑器
         Emacs_Style_Text_Editors="emacs"
         # Vi 风格的文本编辑器
-        Vi_Style_Text_Editors="gvim neovim python-neovim xsel"
+        Vi_Style_Text_Editors="gvim"
         # 办公套件
-        Office_Suites="wps-office ttf-wps-fonts"
+        Office_Suites="libreoffice-fresh libreoffice-fresh-zh-cn"
     # 文件转换
-    Document_Converters="dos2unix figlet"
+    Document_Converters="pandoc dos2unix figlet"
     # 阅读和查看
         # PDF 和 DjVu
         PDF_And_DjVu="xreader"
@@ -203,19 +203,17 @@ sudo pacman -S $(echo "
         # CHM
         CHM="xchm"
     # 笔记
-        # Markdown 工具
-        Markdown="vnote-git"
         # 思维导图
         Mind_Mapping="vym"
     # 字典和词库
     Dictionary_And_Thesaurus="goldendict"
     # 翻译和本地化
-    Translation_And_Localization="poedit translate-shell"
+    Translation_And_Localization="poedit"
 
 
 ##### Security (安全) #####
     # 内核
-    Kernel="linux-lts linux-lts-headers dkms"
+    Kernel="linux-zen linux-zen-headers dkms"
     # 硬件安全
         # 微码
         Microcode="intel-ucode"
@@ -231,7 +229,7 @@ sudo pacman -S $(echo "
     # 防火墙
     Firewall_Management="gufw"
     # 屏幕锁
-    Screen_Lockers="i3lock-color"
+    Screen_Lockers="i3lock"
     # 密码管理
     Password_Managers="keepassxc"
     # 密码学
@@ -251,8 +249,6 @@ sudo pacman -S $(echo "
     Version_Control_Systems="git"
     # 自动化构建工具
     Build_Automation="cmake gradle"
-    # 集成开发环境
-    IDE="intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre pycharm-professional webstorm webstorm-jre"
     # 各语言工具  JSON ⊢----shell----⊣   Tag
     Language_Tools="jq shellcheck shfmt ctags"
     # API 文档浏览
@@ -261,7 +257,7 @@ sudo pacman -S $(echo "
         # 作为软件依赖的语言             ⊢------------Python3------------⊣    ⊢------------Python3------------⊣   Haskell
         As_A_System_Dependent_Language="python python-pip python-setuptools python2 python2-pip python2-setuptools ghc"
         # 我的主要语言     ⊢-------C-------⊣    ⊢-----Java-----⊣    ⊢--JS--⊣  TypeScript
-        My_Main_Language="base-devel gdb clang jdk8-openjdk kotlin nodejs npm typescript"
+        My_Main_Language="base-devel gdb clang jdk-openjdk kotlin nodejs npm typescript"
         # 其它会用到的语言           C#   ⊢--Go--⊣   Rust  ⊢--Ruby--⊣   Lua   DOT
         Other_Languages_To_Be_Used="mono go go-tools rust ruby rubygems lua graphviz"
 
@@ -271,13 +267,15 @@ sudo pacman -S $(echo "
     Digital_Distribution="steam"
     # 游戏模拟器
     Video_Game_Platform_Emulators="ppsspp"
-    # 模擬類游戏
-    Simulation="hmcl"
 
 
 ##### 处理软件缺失的依赖 #####
     # Warframe / 星际战甲 (需手动从 AUR 中安装 xboxdrv 包)
+    # 修复: 运行 5min 后卡死的问题
     Handle_Warframe="python-dbus-common python2-dbus"
+    # VYM
+    # 修复: 解决 vym: error while loading shared libraries: libQt5Script.so.5: cannot open shared object file: No such file or directory
+    Handle_VYM="qt5-script"
 
 
 " | grep "=" | cut -d"=" -f2 | xargs echo)

@@ -15,7 +15,7 @@ cd ~
 # 安装包
 cd "$HOME/.cache/pkg-tmp"
 tar -xzvf pandoc-2.7.3-linux.tar.gz
-cp -rf "pandoc-2.7.3" "$HOME/.config/Manual/pandoc"
+mv -f "pandoc-2.7.3" "$HOME/.config/Manual/pandoc"
 ln -sf "$HOME/.config/Manual/pandoc/bin/pandoc"          "$HOME/.config/Manual/bin/pandoc"
 ln -sf "$HOME/.config/Manual/pandoc/bin/pandoc-citeproc" "$HOME/.config/Manual/bin/pandoc-citeproc"
 cd ~

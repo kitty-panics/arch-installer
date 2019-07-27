@@ -15,7 +15,7 @@ cd ~
 # 安装包
 cd "$HOME/.cache/pkg-tmp"
 tar -xjvf thunderbird-68.0b4.tar.bz2
-cp -rf "thunderbird" "$HOME/.config/Manual/thunderbird"
+mv -f "thunderbird" "$HOME/.config/Manual/thunderbird"
 ln -sf "$HOME/.config/Manual/thunderbird/thunderbird" "$HOME/.config/Manual/bin/thunderbird"
 cd ~
 
