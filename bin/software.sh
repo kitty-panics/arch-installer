@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v10.9.2
+# @Version: v11.0.6
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -28,65 +28,68 @@ sudo pacman -S $(echo "
 ##### Graphical (图形) #####
     # 视频 (显卡)驱动
         # Intel 显卡
-        Intel="mesa lib32-mesa"
+        Intel="xf86-video-intel mesa lib32-mesa"
         # NVIDIA 显卡
-        Nvidia="nvidia-dkms nvidia-utils lib32-nvidia-utils"
+        Nvidia="nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings"
         # Vulkan
-        Vulkan="vulkan-icd-loader lib32-vulkan-icd-loader"
+        Vulkan="vulkan-icd-loader lib32-vulkan-icd-loader vulkan-intel"
     # X Window 系统
         # Xorg 实现
-        Xorg_Server="xorg-server xorg-xmodmap xorg-xhost numlockx"
+        Xorg_Server="xorg-server xorg-xinit xorg-xset xorg-xhost"
         # 触摸版设备
         Input_Devices="libinput xf86-input-libinput xorg-xinput"
         # 屏幕管理
-        Screen_Management="xorg-xrandr"
+        Screen_Management="xorg-xrandr arandr"
+        # 背光
+        Backlight="light"
     # 桌面环境
-        # 顯示管理器
-        Display_Manager="lightdm lightdm-gtk-greeter"
+        # KDE 桌面
+        KDE_Plasma_Desktop="plasma-desktop"
+        # 显示管理器
+        Display_Manager="sddm sddm-kcm"
         # 窗口管理器
         Window_Managers="i3-gaps"
         # 程序启动器
-        Application_Launchers="rofi"
-        # 背光
-        Backlight="light"
+        Application_Launchers="krunner"
     # 美化
         # 字体
-        Fonts="fontconfig ttf-dejavu wqy-zenhei noto-fonts-emoji"
+        Fonts="fontconfig ttf-dejavu noto-fonts wqy-zenhei noto-fonts-cjk noto-fonts-emoji"
         # 窗口合成
         X_Compositor="compton"
-        # 壁紙設置工具及壁紙
+        # 壁纸设置及壁纸
         Wallpaper_Setters="feh jpegexiforient archlinux-wallpaper"
         # GTK+ 样式主题
-        Configuration_GTK="arc-gtk-theme"
+        Configuration_GTK="breeze-gtk kde-gtk-config"
         # QT5 样式主题
-        Configuration_QT5="qt5ct kvantum-qt5"
+        Configuration_QT5="breeze"
         # 图标主题
-        Icon_Themes="papirus-icon-theme"
-        # 光标主题
-        Cursor_Themes="capitaine-cursors"
+        Icon_Themes="breeze-icons papirus-icon-theme"
 
 
 ##### Internet (互联网) #####
     # 网络连接
-        # 网络管理                               ⊢-AP--⊣ ⊢-----WiFi------⊣
-        Network_Managers="network-manager-applet dnsmasq wpa_supplicant iw"
+        # 网络管理                       ⊢-AP--⊣ ⊢-----WiFi------⊣
+        Network_Managers="networkmanager dnsmasq wpa_supplicant iw plasma-nm"
     # Web 浏览器
         # 基于 Gecko
-        Gecko_Based="firefox-developer-edition firefox-developer-edition-i18n-zh-cn flashplugin libvdpau"
+        Gecko_Based="firefox-developer-edition firefox-developer-edition-i18n-zh-cn flashplugin libvdpau xdg-desktop-portal xdg-desktop-portal-kde"
         # 基于 Blink
-        Blink_Based="chromium pepper-flash"
+        Blink_Based="chromium pepper-flash kdialog"
         # 控制台中的浏览器
         Console_Based="w3m imlib2"
     # 文件共享
         # 通用的下载工具
         Download_Managers="aria2 axel wget ca-certificates"
         # BitTorrent 客户端
-        BitTorrent_Clients="transmission-cli"
+        BitTorrent_Clients="ktorrent"
     # 沟通
-        Email_IRC_XMPP_Clients="thunderbird thunderbird-i18n-zh-cn"
+        # 邮件客服端
+        Email_Clients="kmail"
+        # IRC 和 XMPP 客服端
+        IRC_XMPP_Clients="konversation kopete"
     # 新闻, RSS 和博客
         # 新闻聚合
-        News_Aggregators="quiterss"
+        News_Aggregators="akregator"
         # 博客引擎
         Blog_Engines="hugo pygmentize"
 
@@ -94,114 +97,112 @@ sudo pacman -S $(echo "
 ##### Multimedia (多媒体) #####
     # 图像
         # 图像查看
-        Image_Viewers="viewnior"
+        Image_Viewers="gwenview"
         # 图像处理
         Image_Processing="imagemagick"
         # 图像编辑
-        Raster_Graphics_Editors="gimp"
+        Raster_Graphics_Editors="krita kolourpaint"
         # 矢量图形编辑器
         Vector_Graphics_Editors="inkscape"
         # 3D 图形
         3D_Computer_Graphics="blender"
+        # 颜色选择器
+        Color_Pickers="kcolorchooser"
         # 截图
         Screenshot="flameshot"
-        # 颜色选择器
-        Color_Pickers="gcolor3"
     # 音频
         # 声音系统
             # 驱动和接口
             Drivers_And_Interface="alsa-firmware alsa-utils"
             # 声音服务
-            Sound_Servers="pulseaudio pulseaudio-alsa pulseaudio-bluetooth pavucontrol-qt"
+            Sound_Servers="pulseaudio pulseaudio-alsa pulseaudio-bluetooth plasma-pa"
         # 音频播放
-        Audio_Players="cmus flac libmad faad2 libmp4v2"
+        Audio_Players="cmus faad2 wavpack flac libmad"
         # 音频编辑
         Audio_Editors="audacity"
     # 视频
         # 视频播放
         Video_Players="mpv"
-        # 视频转换
-        Video_Converters="ffmpeg handbrake"
+        # 音视频转换
+        Video_Converters="ffmpeg ciano"
         # 录屏
         Screencast="obs-studio libxcomposite"
     # 移动设备管理
-    Mobile_Device_Managers="android-tools android-file-transfer libmtp"
+    Mobile_Device_Managers="android-tools android-file-transfer libmtp kdeconnect sshfs"
 
 
 ##### Utilities (实用程序) #####
     # 终端
         # 终端模拟
-        Terminal_Emulators="alacritty alacritty-terminfo"
+        Terminal_Emulators="konsole"
         # 终端多路复用
         Terminal_multiplexers="tmux"
     # 文字输入
         # 输入法
-        Input_Methods="fcitx fcitx-rime fcitx-gtk2 fcitx-gtk3 fcitx-qt5 fcitx-configtool"
+        Input_Methods="fcitx fcitx-rime fcitx-gtk2 fcitx-gtk3 fcitx-qt5 kcm-fcitx"
     # 磁盘
         # 分区工具
-        Partitioning_Tools="parted"
+        Partitioning_Tools="parted partitionmanager"
         # 格式化工具
         Formatting_Tools="btrfs-progs dosfstools exfat-utils f2fs-tools nilfs-utils ntfs-3g"
         # 挂载工具
         Mount_Tools="udisks2 gptfdisk"
         # 磁盘使用情况显示
-        Disk_Usage_Display="ncdu lsof"
+        Disk_Usage_Display="ncdu filelight lsof"
         # 磁盘健康分析
         Analyzing_And_Monitoring="smartmontools hdparm"
     # 系统
         # 任务管理
-        Task_Managers="htop cronie"
+        Task_Managers="htop strace ksysguard cronie"
         # 系统监视
-        System_Monitors="glances hddtemp python-bottle strace sysstat"
-        # 硬件传感器监控
-            # 温度
-            lm_sensors="lm_sensors psensor"
+        System_Monitors="glances hddtemp python-bottle sysstat"
         # 系统信息查看
-        System_Information_Viewers="neofetch"
+        System_Information_Viewers="neofetch kinfocenter"
         # 蓝牙管理
-        Bluetooth_Management="bluez bluez-utils blueman"
+        Bluetooth_Management="bluez bluez-utils bluedevil"
         # 电源管理
-        Power_Management="tlp x86_energy_perf_policy"
+        Power_Management="powerdevil"
         # Pacman 管理工具
         Pacman_Management_Tools="expac pacgraph pacutils lostfiles pacman-contrib"
-        # Nspawn 相关工具
-        Nspawn="debootstrap debian-archive-keyring"
     # 数学
         # 计算器
-        Calculator="bc calc"
+        Calculator="bc calc kcalc"
+    # 时间管理
+    Time_Management="korganizer"
+    # 任务管理
+    Task_Management="zanshin"
 
 
 ##### Documents (文件) #####
     # 文件管理器
-    File_Managers="ranger atool highlight libcaca python-chardet"
+    File_Managers="ranger atool highlight libcaca python-chardet dolphin dolphin-plugins"
     # 文件同步
     File_Synchronization="rsync"
     # 归档和压缩工具
-    Archiving_And_Compression_Tools="lrzip lzip lzop p7zip unrar zip unzip arj par2cmdline sharutils"
+    Archiving_And_Compression_Tools="lrzip lzip lzop p7zip unrar zip unzip arj par2cmdline sharutils ark"
     # 比较, 差异, 合并
     Comparison_Diff_Merge="meld"
     # 文件检索
-    File_Searching="fd tree"
+    File_Searching="fd tree baloo"
     # 全文检索
     Full_Text_Searching="ripgrep fzf"
     # 替代 cat, ls, man
-    Cat_Ls_Man="bat exa tldr"
+    CAT_LS_MAN="bat exa tldr"
     # 文字编辑
         # Emacs 风格的文本编辑器
         Emacs_Style_Text_Editors="emacs"
         # Vi 风格的文本编辑器
         Vi_Style_Text_Editors="gvim"
+    # 办公
         # 办公套件
         Office_Suites="libreoffice-fresh libreoffice-fresh-zh-cn"
     # 文件转换
     Document_Converters="pandoc dos2unix figlet"
     # 阅读和查看
-        # PDF 和 DjVu
-        PDF_And_DjVu="xreader"
+        # 查看 PDF, DjVu, CHM 文档
+        PDF_DjVu_CHM="okular"
         # 电子书
-        E_Book="fbreader"
-        # CHM
-        CHM="xchm"
+        E_Book="calibre"
     # 笔记
         # 思维导图
         Mind_Mapping="vym"
@@ -221,34 +222,40 @@ sudo pacman -S $(echo "
         MAC_Address_Spoofing="macchanger"
     # 系统管理
         # 权限控制
-        Controlling_Privileges="polkit polkit-gnome"
+        Controlling_Privileges="polkit polkit-kde-agent"
         # 安全 Shell
         Secure_Shell="openssh x11-ssh-askpass xorg-xauth"
     # 网络安全
-    Network_Security="nmap wireshark-qt bind-tools"
+    Network_Security="nmap ntop tcpdump wireshark-qt bind-tools"
     # 防火墙
-    Firewall_Management="gufw"
+    Firewall_Management="ufw gufw"
     # 屏幕锁
     Screen_Lockers="i3lock"
     # 密码管理
-    Password_Managers="keepassxc"
+    Password_Managers="keepassxc kwalletmanager"
+    # 隐写术
+    Encryption_Steganography="kgpg kleopatra"
     # 密码学
         # 磁盘加密
         Disk_Encryption="gocryptfs"
 
 
 ##### Programming (编程) #####
-    # 数据库及其管理工具
-    Database_Tools="mariadb dbeaver"
     # 虚拟化
-        # 虛擬機
-        Virtualization="virtualbox virtualbox-host-dkms virtualbox-guest-iso"
+        # 虚拟机管理程序
+        Hypervisors="virtualbox virtualbox-host-dkms virtualbox-guest-iso"
+        # Nspawn 相关工具
+        Nspawn="debootstrap debian-archive-keyring"
         # 容器
         Container="docker"
+    # 数据库及其管理工具
+    Database_Tools="mariadb dbeaver kexi"
+    # UML 建模
+    UML_Modelers="umbrello"
     # 版本控制系统
     Version_Control_Systems="git"
     # 自动化构建工具
-    Build_Automation="cmake gradle"
+    Build_Automation="cmake gradle maven"
     # 各语言工具  JSON ⊢----shell----⊣   Tag
     Language_Tools="jq shellcheck shfmt ctags"
     # API 文档浏览
@@ -256,8 +263,8 @@ sudo pacman -S $(echo "
     # 编程语言
         # 作为软件依赖的语言             ⊢------------Python3------------⊣    ⊢------------Python3------------⊣   Haskell
         As_A_System_Dependent_Language="python python-pip python-setuptools python2 python2-pip python2-setuptools ghc"
-        # 我的主要语言     ⊢-------C-------⊣    ⊢-----Java-----⊣    ⊢--JS--⊣  TypeScript
-        My_Main_Language="base-devel gdb clang jdk-openjdk kotlin nodejs npm typescript"
+        # 我的主要语言     ⊢------------C-------------⊣  ⊢-----Java-----⊣   ⊢--JS--⊣  TypeScript
+        My_Main_Language="base-devel gdb clang lld lldb jdk-openjdk kotlin nodejs npm typescript"
         # 其它会用到的语言           C#   ⊢--Go--⊣   Rust  ⊢--Ruby--⊣   Lua   DOT
         Other_Languages_To_Be_Used="mono go go-tools rust ruby rubygems lua graphviz"
 
@@ -273,16 +280,13 @@ sudo pacman -S $(echo "
     # Warframe / 星际战甲 (需手动从 AUR 中安装 xboxdrv 包)
     # 修复: 运行 5min 后卡死的问题
     Handle_Warframe="python-dbus-common python2-dbus"
-    # VYM
-    # 修复: 解决 vym: error while loading shared libraries: libQt5Script.so.5: cannot open shared object file: No such file or directory
-    Handle_VYM="qt5-script"
 
 
 " | grep "=" | cut -d"=" -f2 | xargs echo)
 sync
 
-# lightdm
-sudo systemctl enable lightdm.service
+# sddm
+sudo systemctl enable sddm.service
 
 # networkmanager
 sudo systemctl enable NetworkManager.service
@@ -294,12 +298,6 @@ amixer sset Headphone unmute
 
 # pulseaudio
 pactl set-sink-mute 0 false
-
-# tlp
-sudo systemctl enable tlp.service
-sudo systemctl enable tlp-sleep.service
-sudo systemctl mask systemd-rfkill.service
-sudo systemctl mask systemd-rfkill.socket
 
 # intel-ucode
 sudo grub-mkconfig -o /boot/grub/grub.cfg
