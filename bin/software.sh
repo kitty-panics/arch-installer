@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.0.6
+# @Version: v11.0.7
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -81,7 +81,7 @@ sudo pacman -S $(echo "
         # 通用的下载工具
         Download_Managers="aria2 axel wget ca-certificates"
         # BitTorrent 客户端
-        BitTorrent_Clients="ktorrent"
+        BitTorrent_Clients="qbittorrent"
     # 沟通
         # 邮件客服端
         Email_Clients="kmail"
@@ -250,8 +250,6 @@ sudo pacman -S $(echo "
         Container="docker"
     # 数据库及其管理工具
     Database_Tools="mariadb dbeaver kexi"
-    # UML 建模
-    UML_Modelers="umbrello"
     # 版本控制系统
     Version_Control_Systems="git"
     # 自动化构建工具
