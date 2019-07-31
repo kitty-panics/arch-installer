@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.0.7
+# @Version: v11.0.9
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -83,13 +83,11 @@ sudo pacman -S $(echo "
         # BitTorrent 客户端
         BitTorrent_Clients="qbittorrent"
     # 沟通
-        # 邮件客服端
-        Email_Clients="kmail"
-        # IRC 和 XMPP 客服端
-        IRC_XMPP_Clients="konversation kopete"
+        # 邮件, IRC, XMPP客服端
+        Email_IRC_XMPP_Clients="thunderbird thunderbird-i18n-zh-cn"
     # 新闻, RSS 和博客
         # 新闻聚合
-        News_Aggregators="akregator"
+        News_Aggregators="quiterss"
         # 博客引擎
         Blog_Engines="hugo pygmentize"
 
@@ -107,7 +105,7 @@ sudo pacman -S $(echo "
         # 3D 图形
         3D_Computer_Graphics="blender"
         # 颜色选择器
-        Color_Pickers="kcolorchooser"
+        Color_Pickers="gcolor3"
         # 截图
         Screenshot="flameshot"
     # 音频
@@ -167,10 +165,6 @@ sudo pacman -S $(echo "
     # 数学
         # 计算器
         Calculator="bc calc kcalc"
-    # 时间管理
-    Time_Management="korganizer"
-    # 任务管理
-    Task_Management="zanshin"
 
 
 ##### Documents (文件) #####
@@ -249,7 +243,7 @@ sudo pacman -S $(echo "
         # 容器
         Container="docker"
     # 数据库及其管理工具
-    Database_Tools="mariadb dbeaver kexi"
+    Database_Tools="mariadb dbeaver"
     # 版本控制系统
     Version_Control_Systems="git"
     # 自动化构建工具
