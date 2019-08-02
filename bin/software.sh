@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.1.2
+# @Version: v11.1.3
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -53,7 +53,18 @@ sudo pacman -S $(echo "
         Application_Launchers="krunner"
     # 美化
         # 字体
-        Fonts="fontconfig ttf-dejavu noto-fonts wqy-zenhei noto-fonts-cjk noto-fonts-emoji"
+            # 配置工具
+            Font_Cconfig="fontconfig"
+            # 拉丁文字
+            Latin_Script="ttf-dejavu noto-fonts"
+            # 泛 CJK
+            Pan_CJK="noto-fonts-cjk"
+            # 中文
+            Chinese="wqy-zenhei"
+            # 日文
+            Japanese="otf-ipafont"
+            # 表情和符號
+            Emoji_And_Symbols="noto-fonts-emoji ttf-joypixels"
         # 窗口合成
         X_Compositor="compton"
         # 壁纸设置及壁纸
