@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.1.3
+# @Version: v11.1.5
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -41,7 +41,7 @@ sudo pacman -S $(echo "
         # 屏幕管理
         Screen_Management="xorg-xrandr arandr"
         # 背光
-        Backlight="light"
+        Backlight="light redshift"
     # 桌面环境
         # KDE 桌面
         KDE_Plasma_Desktop="plasma-desktop"
@@ -83,7 +83,7 @@ sudo pacman -S $(echo "
         Network_Managers="networkmanager dnsmasq wpa_supplicant iw plasma-nm"
     # Web 浏览器
         # 基于 Gecko
-        Gecko_Based="firefox-developer-edition firefox-developer-edition-i18n-zh-tw firefox-developer-edition-i18n-ja firefox-developer-edition-i18n-de firefox-developer-edition-i18n-zh-cn flashplugin libvdpau xdg-desktop-portal xdg-desktop-portal-kde"
+        Gecko_Based="firefox-developer-edition flashplugin libvdpau xdg-desktop-portal xdg-desktop-portal-kde"
         # 基于 Blink
         Blink_Based="chromium pepper-flash kdialog"
         # 控制台中的浏览器
@@ -95,7 +95,7 @@ sudo pacman -S $(echo "
         BitTorrent_Clients="qbittorrent"
     # 沟通
         # 邮件, IRC, XMPP客服端
-        Email_IRC_XMPP_Clients="thunderbird thunderbird-i18n-zh-tw thunderbird-i18n-ja thunderbird-i18n-de thunderbird-i18n-zh-cn"
+        Email_IRC_XMPP_Clients="thunderbird"
     # 新闻, RSS 和博客
         # 新闻聚合
         News_Aggregators="quiterss"
@@ -200,7 +200,7 @@ sudo pacman -S $(echo "
         Vi_Style_Text_Editors="gvim"
     # 办公
         # 办公套件
-        Office_Suites="libreoffice-fresh libreoffice-fresh-zh-tw libreoffice-fresh-ja libreoffice-fresh-de libreoffice-fresh-zh-cn"
+        Office_Suites="libreoffice-fresh"
     # 文件转换
     Document_Converters="pandoc dos2unix figlet"
     # 阅读和查看
