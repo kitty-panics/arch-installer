@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.1.8
+# @Version: v11.1.9
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -66,7 +66,7 @@ sudo pacman -S $(echo "
             # 表情符号
             Emoji_And_Symbols="noto-fonts-emoji ttf-joypixels"
         # 窗口合成
-        X_Compositor="compton"
+        X_Compositor="compton compton-conf-git"
         # 壁纸设置及壁纸
         Wallpaper_Setters="feh jpegexiforient archlinux-wallpaper"
         # GTK+ 样式主题
@@ -208,6 +208,8 @@ sudo pacman -S $(echo "
         PDF_DjVu_CHM="okular"
         # 电子书
         E_Book="calibre"
+        # 笔记记录
+        Note_Taking="vnote-git"
     # 笔记
         # 思维导图
         Mind_Mapping="vym"
@@ -235,7 +237,7 @@ sudo pacman -S $(echo "
     # 防火墙
     Firewall_Management="ufw gufw"
     # 屏幕锁
-    Screen_Lockers="i3lock"
+    Screen_Lockers="i3lock-color"
     # 密码管理
     Password_Managers="keepassxc kwalletmanager"
     # 密码学
