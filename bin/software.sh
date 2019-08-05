@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.1.5
+# @Version: v11.1.8
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -28,19 +28,19 @@ sudo pacman -S $(echo "
 ##### Graphical (图形) #####
     # 视频 (显卡)驱动
         # Intel 显卡
-        Intel="xf86-video-intel mesa lib32-mesa"
+        Intel="mesa lib32-mesa"
         # NVIDIA 显卡
         Nvidia="nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings"
         # Vulkan
-        Vulkan="vulkan-icd-loader lib32-vulkan-icd-loader vulkan-intel"
+        Vulkan="vulkan-icd-loader lib32-vulkan-icd-loader"
     # X Window 系统
         # Xorg 实现
         Xorg_Server="xorg-server xorg-xinit xorg-xset xorg-xhost"
-        # 触摸版设备
-        Input_Devices="libinput xf86-input-libinput xorg-xinput"
+        # 触摸板设备
+        Touchpad_Devices="libinput xf86-input-libinput xorg-xinput"
         # 屏幕管理
         Screen_Management="xorg-xrandr arandr"
-        # 背光
+        # 背光调节
         Backlight="light redshift"
     # 桌面环境
         # KDE 桌面
@@ -54,16 +54,16 @@ sudo pacman -S $(echo "
     # 美化
         # 字体
             # 配置工具
-            Font_Cconfig="fontconfig"
-            # 拉丁文字
-            Latin_Script="ttf-dejavu noto-fonts"
-            # 泛 CJK
-            Pan_CJK="noto-fonts-cjk"
-            # 中文
-            Chinese="wqy-zenhei"
+            Fonts_Cconfig="fontconfig"
+            # 拉丁字体
+            Latin_Fonts="ttf-dejavu noto-fonts"
+            # CJK 字体
+            CJK_Fonts="noto-fonts-cjk"
+            # 简体中文
+            Chinese_Fonts="wqy-zenhei"
             # 日文
-            Japanese="otf-ipafont"
-            # 表情和符號
+            Japanese_Fonts="otf-ipafont"
+            # 表情符号
             Emoji_And_Symbols="noto-fonts-emoji ttf-joypixels"
         # 窗口合成
         X_Compositor="compton"
@@ -83,9 +83,9 @@ sudo pacman -S $(echo "
         Network_Managers="networkmanager dnsmasq wpa_supplicant iw plasma-nm"
     # Web 浏览器
         # 基于 Gecko
-        Gecko_Based="firefox-developer-edition flashplugin libvdpau xdg-desktop-portal xdg-desktop-portal-kde"
+        Gecko_Based="firefox-kde-opensuse flashplugin libvdpau"
         # 基于 Blink
-        Blink_Based="chromium pepper-flash kdialog"
+        Blink_Based="chromium pepper-flash"
         # 控制台中的浏览器
         Console_Based="w3m imlib2"
     # 文件共享
@@ -95,7 +95,9 @@ sudo pacman -S $(echo "
         BitTorrent_Clients="qbittorrent"
     # 沟通
         # 邮件, IRC, XMPP客服端
-        Email_IRC_XMPP_Clients="thunderbird"
+        Email_IRC_XMPP_Clients="thunderbird-appmenu"
+        # 远程桌面
+        Remote_Desktop="teamviewer"
     # 新闻, RSS 和博客
         # 新闻聚合
         News_Aggregators="quiterss"
@@ -110,11 +112,9 @@ sudo pacman -S $(echo "
         # 图像处理
         Image_Processing="imagemagick"
         # 图像编辑
-        Raster_Graphics_Editors="krita kolourpaint"
+        Raster_Graphics_Editors="gimp kolourpaint"
         # 矢量图形编辑器
         Vector_Graphics_Editors="inkscape"
-        # 3D 图形
-        3D_Computer_Graphics="blender"
         # 颜色选择器
         Color_Pickers="gcolor3"
         # 截图
@@ -133,7 +133,7 @@ sudo pacman -S $(echo "
         # 视频播放
         Video_Players="mpv"
         # 音视频转换
-        Video_Converters="ffmpeg ciano"
+        Video_Converters="ffmpeg"
         # 录屏
         Screencast="obs-studio libxcomposite"
     # 移动设备管理
@@ -142,7 +142,7 @@ sudo pacman -S $(echo "
 
 ##### Utilities (实用程序) #####
     # 终端
-        # 终端模拟
+        # 终端仿真器
         Terminal_Emulators="konsole"
         # 终端多路复用
         Terminal_multiplexers="tmux"
@@ -164,15 +164,15 @@ sudo pacman -S $(echo "
         # 任务管理
         Task_Managers="htop strace ksysguard cronie"
         # 系统监视
-        System_Monitors="glances hddtemp python-bottle sysstat conky conky-manager"
+        System_Monitors="glances hddtemp python-bottle sysstat conky"
         # 系统信息查看
         System_Information_Viewers="neofetch kinfocenter"
         # 蓝牙管理
         Bluetooth_Management="bluez bluez-utils bluedevil"
         # 电源管理
         Power_Management="powerdevil"
-        # Pacman 管理工具
-        Pacman_Management_Tools="expac pacgraph pacutils lostfiles pacman-contrib"
+        # Pacman 工具
+        Pacman_Tools="expac pacgraph pacutils lostfiles pacman-contrib"
     # 数学
         # 计算器
         Calculator="bc calc kcalc"
@@ -200,7 +200,7 @@ sudo pacman -S $(echo "
         Vi_Style_Text_Editors="gvim"
     # 办公
         # 办公套件
-        Office_Suites="libreoffice-fresh"
+        Office_Suites="wps-office ttf-wps-fonts"
     # 文件转换
     Document_Converters="pandoc dos2unix figlet"
     # 阅读和查看
@@ -238,9 +238,9 @@ sudo pacman -S $(echo "
     Screen_Lockers="i3lock"
     # 密码管理
     Password_Managers="keepassxc kwalletmanager"
-    # 隐写术
-    Encryption_Steganography="kgpg kleopatra"
     # 密码学
+        # 隐写术
+        Encryption_Steganography="kgpg kleopatra"
         # 磁盘加密
         Disk_Encryption="gocryptfs"
 
@@ -261,8 +261,8 @@ sudo pacman -S $(echo "
     Build_Automation="cmake gradle maven"
     # 各语言工具  JSON ⊢----shell----⊣   Tag
     Language_Tools="jq shellcheck shfmt ctags"
-    # API 文档浏览
-    API_Documentation_Browsers="zeal"
+    # API 文档
+    API_Document="zeal"
     # 编程语言
         # 作为软件依赖的语言             ⊢------------Python3------------⊣    ⊢------------Python3------------⊣   Haskell
         As_A_System_Dependent_Language="python python-pip python-setuptools python2 python2-pip python2-setuptools ghc"
@@ -270,19 +270,30 @@ sudo pacman -S $(echo "
         My_Main_Language="base-devel gdb clang lld lldb jdk-openjdk kotlin nodejs npm typescript"
         # 其它会用到的语言           C#   ⊢--Go--⊣   Rust  ⊢--Ruby--⊣   Lua   DOT
         Other_Languages_To_Be_Used="mono go go-tools rust ruby rubygems lua graphviz"
+    # 集成开发工具
+    Java_IDE="intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre"
+    Py_IDE="pycharm-professional"
+    Web_IDE="webstorm webstorm-jre"
 
 
 ##### Programming (编程) #####
     # 数字发行平台
     Digital_Distribution="steam"
     # 游戏模拟器
-    Video_Game_Platform_Emulators="ppsspp"
+    Video_Game_Platform_Emulators="ppsspp-qt"
 
 
 ##### 处理软件缺失的依赖 #####
-    # Warframe / 星际战甲 (需手动从 AUR 中安装 xboxdrv 包)
-    # 修复: 运行 5min 后卡死的问题
-    Handle_Warframe="python-dbus-common python2-dbus"
+    # 修复 Warframe 运行 5min 后卡死的问题 (需手动从 AUR 中安装 xboxdrv 包)
+    Handle_Warframe=""
+    # 修复 GTK2/3 的程序在 KDE 中没全局菜单的问题
+    Handle_GTK2_3="appmenu-gtk-module libdbusmenu-glib lib32-libdbusmenu-glib libdbusmenu-gtk2 lib32-libdbusmenu-gtk2 libdbusmenu-gtk3 lib32-libdbusmenu-gtk3 libdbusmenu-qt5"
+    # 修复 Firefox 与 KDE 集成的问题
+    Handle_Firefox="xdg-desktop-portal xdg-desktop-portal-kde plasma-browser-integration"
+    # 修复 Chromium 与 KDE 集成的问题
+    Handle_Chromium="kdialog"
+    # 修复系统设置中 Frequently used 显示异常的问题
+    Handle_System_Settings="kscreen user-manager"
 
 
 " | grep "=" | cut -d"=" -f2 | xargs echo)
