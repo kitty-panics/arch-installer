@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.1.9
+# @Version: v11.2.6
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -26,7 +26,7 @@ echo -e "$red >>>>> Start Install Software (开始安装). $reset"
 sudo pacman -S $(echo "
 
 ##### Graphical (图形) #####
-    # 视频 (显卡)驱动
+    # 视频 (显卡) 驱动
         # Intel 显卡
         Intel="mesa lib32-mesa"
         # NVIDIA 显卡
@@ -50,7 +50,7 @@ sudo pacman -S $(echo "
         # 窗口管理器
         Window_Managers="i3-gaps"
         # 程序启动器
-        Application_Launchers="krunner"
+        Application_Launchers="rofi krunner"
     # 美化
         # 字体
             # 配置工具
@@ -67,14 +67,14 @@ sudo pacman -S $(echo "
             Emoji_And_Symbols="noto-fonts-emoji ttf-joypixels"
         # 窗口合成
         X_Compositor="compton compton-conf-git"
-        # 壁纸设置及壁纸
+        # 壁纸及壁纸设置工具
         Wallpaper_Setters="feh jpegexiforient archlinux-wallpaper"
-        # GTK+ 样式主题
+        # 图标主题
+        Icon_Themes="breeze-icons papirus-icon-theme"
+        # GTK2/3 样式主题
         Configuration_GTK="breeze-gtk kde-gtk-config"
         # QT5 样式主题
         Configuration_QT5="breeze"
-        # 图标主题
-        Icon_Themes="breeze-icons papirus-icon-theme"
 
 
 ##### Internet (互联网) #####
@@ -98,6 +98,8 @@ sudo pacman -S $(echo "
         Email_IRC_XMPP_Clients="thunderbird-appmenu"
         # 远程桌面
         Remote_Desktop="teamviewer"
+        # 即时聊天工具
+        IM_Clients="deepin.com.qq.office electronic-wechat"
     # 新闻, RSS 和博客
         # 新闻聚合
         News_Aggregators="quiterss"
@@ -282,20 +284,22 @@ sudo pacman -S $(echo "
     # 数字发行平台
     Digital_Distribution="steam"
     # 游戏模拟器
-    Video_Game_Platform_Emulators="ppsspp-qt"
+    Video_Game_Platform_Emulators="ppsspp"
 
 
-##### 处理软件缺失的依赖 #####
-    # 修复 Warframe 运行 5min 后卡死的问题 (需手动从 AUR 中安装 xboxdrv 包)
-    Handle_Warframe=""
-    # 修复 GTK2/3 的程序在 KDE 中没全局菜单的问题
-    Handle_GTK2_3="appmenu-gtk-module libdbusmenu-glib lib32-libdbusmenu-glib libdbusmenu-gtk2 lib32-libdbusmenu-gtk2 libdbusmenu-gtk3 lib32-libdbusmenu-gtk3 libdbusmenu-qt5"
+##### 处理缺失的组件 #####
+    # 修复系统设置中 Frequently used 显示异常的问题
     # 修复 Firefox 与 KDE 集成的问题
     Handle_Firefox="xdg-desktop-portal xdg-desktop-portal-kde plasma-browser-integration"
     # 修复 Chromium 与 KDE 集成的问题
     Handle_Chromium="kdialog"
-    # 修复系统设置中 Frequently used 显示异常的问题
     Handle_System_Settings="kscreen user-manager"
+    # 修复 GTK2/3 的程序在 KDE 中没全局菜单的问题
+    Handle_GTK2_3="appmenu-gtk-module libdbusmenu-glib lib32-libdbusmenu-glib libdbusmenu-gtk2 lib32-libdbusmenu-gtk2 libdbusmenu-gtk3 lib32-libdbusmenu-gtk3 libdbusmenu-qt5"
+    # 修复 Deepin TIM 在非 GNOME 的 DE/WM 中无法启动的问题
+    Handle_Deepin_TIM="gnome-settings-daemon"
+    # 修复 Warframe 运行 5min 后卡死的问题 (需手动从 AUR 中安装 xboxdrv 包)
+    Handle_Warframe=""
 
 
 " | grep "=" | cut -d"=" -f2 | xargs echo)
