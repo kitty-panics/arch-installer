@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.2.6
+# @Version: v11.2.7
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -289,11 +289,11 @@ sudo pacman -S $(echo "
 
 ##### 处理缺失的组件 #####
     # 修复系统设置中 Frequently used 显示异常的问题
+    Handle_System_Settings="kscreen user-manager"
     # 修复 Firefox 与 KDE 集成的问题
     Handle_Firefox="xdg-desktop-portal xdg-desktop-portal-kde plasma-browser-integration"
     # 修复 Chromium 与 KDE 集成的问题
     Handle_Chromium="kdialog"
-    Handle_System_Settings="kscreen user-manager"
     # 修复 GTK2/3 的程序在 KDE 中没全局菜单的问题
     Handle_GTK2_3="appmenu-gtk-module libdbusmenu-glib lib32-libdbusmenu-glib libdbusmenu-gtk2 lib32-libdbusmenu-gtk2 libdbusmenu-gtk3 lib32-libdbusmenu-gtk3 libdbusmenu-qt5"
     # 修复 Deepin TIM 在非 GNOME 的 DE/WM 中无法启动的问题
