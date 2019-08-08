@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.2.7
+# @Version: v11.2.8
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -83,7 +83,7 @@ sudo pacman -S $(echo "
         Network_Managers="networkmanager dnsmasq wpa_supplicant iw plasma-nm"
     # Web 浏览器
         # 基于 Gecko
-        Gecko_Based="firefox-kde-opensuse flashplugin libvdpau"
+        Gecko_Based="firefox-developer-edition flashplugin libvdpau"
         # 基于 Blink
         Blink_Based="chromium pepper-flash"
         # 控制台中的浏览器
