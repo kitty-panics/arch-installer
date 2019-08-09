@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.3.1
+# @Version: v11.3.2
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -95,7 +95,7 @@ sudo pacman -S $(echo "
         BitTorrent_Clients="qbittorrent"
     # 沟通
         # 邮件, IRC, XMPP客服端
-        Email_IRC_XMPP_Clients="thunderbird-appmenu"
+        Email_IRC_XMPP_Clients="thunderbird"
         # 远程桌面
         Remote_Desktop="teamviewer"
         # 即时聊天工具
