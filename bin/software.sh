@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.2.9
+# @Version: v11.3.0
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -223,7 +223,7 @@ sudo pacman -S $(echo "
 
 ##### Security (安全) #####
     # 内核
-    Kernel="linux-zen linux-zen-headers dkms"
+    Kernel="linux-lts linux-lts-headers dkms"
     # 硬件安全
         # 微码
         Microcode="intel-ucode"
