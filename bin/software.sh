@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.2.8
+# @Version: v11.2.9
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -235,7 +235,7 @@ sudo pacman -S $(echo "
         # 安全 Shell
         Secure_Shell="openssh x11-ssh-askpass xorg-xauth"
     # 网络安全
-    Network_Security="nmap ntop tcpdump wireshark-qt bind-tools"
+    Network_Security="dnscrypt-proxy nmap ntop tcpdump wireshark-qt bind-tools"
     # 防火墙
     Firewall_Management="ufw gufw"
     # 屏幕锁
@@ -321,6 +321,9 @@ pactl set-sink-mute 0 false
 
 # intel-ucode
 sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+# dnscrypt-proxy
+sudo systemctl enable dnscrypt-proxy.service
 
 # ufw
 sudo systemctl enable ufw.service
