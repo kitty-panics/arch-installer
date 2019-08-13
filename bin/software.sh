@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.3.2
+# @Version: v11.3.3
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -133,7 +133,7 @@ sudo pacman -S $(echo "
         Audio_Editors="audacity"
     # 视频
         # 视频播放
-        Video_Players="mpv"
+        Video_Players="mpv smplayer"
         # 音视频转换
         Video_Converters="ffmpeg"
         # 录屏
@@ -200,6 +200,8 @@ sudo pacman -S $(echo "
         Emacs_Style_Text_Editors="emacs"
         # Vi 风格的文本编辑器
         Vi_Style_Text_Editors="gvim"
+        # 图形化的编辑器
+        Graphical_Editors="code"
     # 办公
         # 办公套件
         Office_Suites="wps-office ttf-wps-fonts"
@@ -260,7 +262,7 @@ sudo pacman -S $(echo "
     # 数据库及其管理工具
     Database_Tools="mariadb dbeaver"
     # 版本控制系统
-    Version_Control_Systems="git"
+    Version_Control_Systems="git tig"
     # 自动化构建工具
     Build_Automation="cmake gradle maven"
     # 各语言工具  JSON ⊢----shell----⊣   Tag
@@ -276,7 +278,8 @@ sudo pacman -S $(echo "
         Other_Languages_To_Be_Used="mono go go-tools rust ruby rubygems lua graphviz"
     # 集成开发工具
     Java_IDE="intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre"
-    Py_IDE="pycharm-professional"
+    C_Cpp_IDE="clion clion-jre clion-cmake clion-gdb clion-lldb"
+    Python_IDE="pycharm-professional"
     Web_IDE="webstorm webstorm-jre"
 
 
@@ -296,8 +299,8 @@ sudo pacman -S $(echo "
     Handle_Chromium="kdialog"
     # 修复 GTK2/3 的程序在 KDE 中没全局菜单的问题
     Handle_GTK2_3="appmenu-gtk-module libdbusmenu-glib lib32-libdbusmenu-glib libdbusmenu-gtk2 lib32-libdbusmenu-gtk2 libdbusmenu-gtk3 lib32-libdbusmenu-gtk3 libdbusmenu-qt5"
-    # 修复 Deepin TIM 在非 GNOME 的 DE/WM 中无法启动的问题
-    Handle_Deepin_TIM="gnome-settings-daemon"
+    # 修复 Deepin QQ/TIM 在非 GNOME 的 DE/WM 中无法启动的问题
+    Handle_QQ_TIM="gnome-settings-daemon"
     # 修复 Warframe 运行 5min 后卡死的问题 (需手动从 AUR 中安装 xboxdrv 包)
     Handle_Warframe=""
 
