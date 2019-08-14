@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.3.3
+# @Version: v11.3.5
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -174,7 +174,7 @@ sudo pacman -S $(echo "
         # 电源管理
         Power_Management="powerdevil"
         # Pacman 工具
-        Pacman_Tools="expac pacgraph pacutils lostfiles pacman-contrib"
+        Pacman_Tools="expac pacgraph pacutils lostfiles pacman-contrib archlinuxcn-keyring"
     # 数学
         # 计算器
         Calculator="bc calc kcalc"
@@ -301,6 +301,8 @@ sudo pacman -S $(echo "
     Handle_GTK2_3="appmenu-gtk-module libdbusmenu-glib lib32-libdbusmenu-glib libdbusmenu-gtk2 lib32-libdbusmenu-gtk2 libdbusmenu-gtk3 lib32-libdbusmenu-gtk3 libdbusmenu-qt5"
     # 修复 Deepin QQ/TIM 在非 GNOME 的 DE/WM 中无法启动的问题
     Handle_QQ_TIM="gnome-settings-daemon"
+    # 修复 DNS 速度慢的问题 (需手动从 AUR 中安装 dnscrypt-proxy-china-list-git 包)
+    Handle_DNS=""
     # 修复 Warframe 运行 5min 后卡死的问题 (需手动从 AUR 中安装 xboxdrv 包)
     Handle_Warframe=""
 
