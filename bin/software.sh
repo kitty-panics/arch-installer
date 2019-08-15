@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.3.5
+# @Version: v11.3.6
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -174,7 +174,7 @@ sudo pacman -S $(echo "
         # 电源管理
         Power_Management="powerdevil"
         # Pacman 工具
-        Pacman_Tools="expac pacgraph pacutils lostfiles pacman-contrib archlinuxcn-keyring"
+        Pacman_Tools="arch-install-scripts expac pacgraph pacutils lostfiles pacman-contrib archlinuxcn-keyring"
     # 数学
         # 计算器
         Calculator="bc calc kcalc"
