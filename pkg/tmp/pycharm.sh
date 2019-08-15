@@ -16,11 +16,11 @@ cd ~
 cd "$HOME/.cache/pkg-tmp"
 tar -xzvf "pycharm-professional-2019.2.tar.gz"
 mv -f "pycharm-2019.2" "$HOME/.config/Manual/pycharm"
-ln -sf "$HOME/.config/Manual/pycharm/bin/pycharm.sh" "$HOME/.config/Manual/bin/pycharm"
+ln -sf "$HOME/.config/Manual/pycharm/bin/pycharm.sh" "$HOME/.config/Manual/ubin/pycharm"
 cd ~
 
 # 赋予执行权限
-chmod +x "$HOME/.config/Manual/bin/pycharm"
+chmod +x "$HOME/.config/Manual/ubin/pycharm"
 
 # 清理环境
 rm -rf "$HOME/.cache/pkg-tmp"

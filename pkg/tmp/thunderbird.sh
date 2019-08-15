@@ -16,11 +16,11 @@ cd ~
 cd "$HOME/.cache/pkg-tmp"
 tar -xjvf thunderbird-68.0b4.tar.bz2
 mv -f "thunderbird" "$HOME/.config/Manual/thunderbird"
-ln -sf "$HOME/.config/Manual/thunderbird/thunderbird" "$HOME/.config/Manual/bin/thunderbird"
+ln -sf "$HOME/.config/Manual/thunderbird/thunderbird" "$HOME/.config/Manual/ubin/thunderbird"
 cd ~
 
 # 赋予执行权限
-chmod +x "$HOME/.config/Manual/bin/thunderbird"
+chmod +x "$HOME/.config/Manual/ubin/thunderbird"
 
 # 清理环境
 rm -rf "$HOME/.cache/pkg-tmp"

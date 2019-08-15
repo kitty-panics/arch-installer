@@ -16,11 +16,11 @@ cd ~
 cd "$HOME/.cache/pkg-tmp"
 tar -xzvf ideaIU-2019.2.tar.gz
 mv -f "idea-IU-192.5728.98" "$HOME/.config/Manual/idea"
-ln -sf "$HOME/.config/Manual/idea/bin/idea.sh" "$HOME/.config/Manual/bin/idea"
+ln -sf "$HOME/.config/Manual/idea/bin/idea.sh" "$HOME/.config/Manual/ubin/idea"
 cd ~
 
 # 赋予执行权限
-chmod +x "$HOME/.config/Manual/bin/idea"
+chmod +x "$HOME/.config/Manual/ubin/idea"
 
 # 清理环境
 rm -rf "$HOME/.cache/pkg-tmp"

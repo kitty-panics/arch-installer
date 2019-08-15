@@ -16,11 +16,11 @@ cd ~
 cd "$HOME/.cache/pkg-tmp"
 tar -xzvf WebStorm-2019.2.tar.gz
 mv -f "WebStorm-192.5728.87" "$HOME/.config/Manual/WebStorm"
-ln -sf "$HOME/.config/Manual/WebStorm/bin/webstorm.sh" "$HOME/.config/Manual/bin/webstorm"
+ln -sf "$HOME/.config/Manual/WebStorm/bin/webstorm.sh" "$HOME/.config/Manual/ubin/webstorm"
 cd ~
 
 # 赋予执行权限
-chmod +x "$HOME/.config/Manual/bin/webstorm"
+chmod +x "$HOME/.config/Manual/ubin/webstorm"
 
 # 清理环境
 rm -rf "$HOME/.cache/pkg-tmp"

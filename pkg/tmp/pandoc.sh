@@ -16,13 +16,13 @@ cd ~
 cd "$HOME/.cache/pkg-tmp"
 tar -xzvf pandoc-2.7.3-linux.tar.gz
 mv -f "pandoc-2.7.3" "$HOME/.config/Manual/pandoc"
-ln -sf "$HOME/.config/Manual/pandoc/bin/pandoc"          "$HOME/.config/Manual/bin/pandoc"
-ln -sf "$HOME/.config/Manual/pandoc/bin/pandoc-citeproc" "$HOME/.config/Manual/bin/pandoc-citeproc"
+ln -sf "$HOME/.config/Manual/pandoc/bin/pandoc"          "$HOME/.config/Manual/ubin/pandoc"
+ln -sf "$HOME/.config/Manual/pandoc/bin/pandoc-citeproc" "$HOME/.config/Manual/ubin/pandoc-citeproc"
 cd ~
 
 # 赋予执行权限
-chmod +x "$HOME/.config/Manual/bin/pandoc"
-chmod +x "$HOME/.config/Manual/bin/pandoc-citeproc"
+chmod +x "$HOME/.config/Manual/ubin/pandoc"
+chmod +x "$HOME/.config/Manual/ubin/pandoc-citeproc"
 
 # 清理环境
 rm -rf "$HOME/.cache/pkg-tmp"

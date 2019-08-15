@@ -11,7 +11,7 @@ mkdir -p "$HOME/.cache/pkg-tmp"
 git clone --depth=1 https://github.com/skywind3000/translator "$HOME/.config/Manual/translator"
 
 # 安装包
-#ln -sf "$HOME/.config/Manual/translator/translator.py" "$HOME/.config/Manual/bin/translator.py"
+#ln -sf "$HOME/.config/Manual/translator/translator.py" "$HOME/.config/Manual/ubin/translator.py"
 
 # 赋予执行权限
 # :
