@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.3.6
+# @Version: v11.3.7
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -99,7 +99,7 @@ sudo pacman -S $(echo "
         # 远程桌面
         Remote_Desktop="teamviewer"
         # 即时聊天工具
-        IM_Clients="deepin.com.qq.office electronic-wechat"
+        IM_Clients="electronic-wechat"
     # 新闻, RSS 和博客
         # 新闻聚合
         News_Aggregators="quiterss"
@@ -133,7 +133,7 @@ sudo pacman -S $(echo "
         Audio_Editors="audacity"
     # 视频
         # 视频播放
-        Video_Players="mpv smplayer"
+        Video_Players="mpv"
         # 音视频转换
         Video_Converters="ffmpeg"
         # 录屏
@@ -299,8 +299,6 @@ sudo pacman -S $(echo "
     Handle_Chromium="kdialog"
     # 修复 GTK2/3 的程序在 KDE 中没全局菜单的问题
     Handle_GTK2_3="appmenu-gtk-module libdbusmenu-glib lib32-libdbusmenu-glib libdbusmenu-gtk2 lib32-libdbusmenu-gtk2 libdbusmenu-gtk3 lib32-libdbusmenu-gtk3 libdbusmenu-qt5"
-    # 修复 Deepin QQ/TIM 在非 GNOME 的 DE/WM 中无法启动的问题
-    Handle_QQ_TIM="gnome-settings-daemon"
     # 修复 DNS 速度慢的问题 (需手动从 AUR 中安装 dnscrypt-proxy-china-list-git 包)
     Handle_DNS=""
     # 修复 Warframe 运行 5min 后卡死的问题 (需手动从 AUR 中安装 xboxdrv 包)
