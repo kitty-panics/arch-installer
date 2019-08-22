@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.3.7
+# @Version: v11.3.8
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -201,7 +201,7 @@ sudo pacman -S $(echo "
         # Vi 风格的文本编辑器
         Vi_Style_Text_Editors="gvim"
         # 图形化的编辑器
-        Graphical_Editors="code"
+        Graphical_Editors="visual-studio-code-bin"
     # 办公
         # 办公套件
         Office_Suites="wps-office ttf-wps-fonts"
