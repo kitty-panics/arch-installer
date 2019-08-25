@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.3.9
+# @Version: v11.4.1
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -274,8 +274,8 @@ sudo pacman -S $(echo "
     # 编程语言
         # 作为软件依赖的语言             ⊢------------Python3------------⊣    ⊢------------Python3------------⊣   Haskell
         As_A_System_Dependent_Language="python python-pip python-setuptools python2 python2-pip python2-setuptools ghc"
-        # 我的主要语言     ⊢------------C-------------⊣  ⊢-----Java-----⊣   ⊢--JS--⊣  TypeScript
-        My_Main_Language="base-devel gdb clang lld lldb jdk-openjdk kotlin nodejs npm typescript"
+        # 我的主要语言     ⊢------------C-------------⊣  ⊢--------Java--------⊣   ⊢--JS--⊣  TypeScript
+        My_Main_Language="base-devel gdb clang lld lldb jdk8-openjdk jdk-openjdk kotlin nodejs npm typescript"
         # 其它会用到的语言           C#   ⊢--Go--⊣   Rust  ⊢--Ruby--⊣   Lua   DOT
         Other_Languages_To_Be_Used="mono go go-tools rust ruby rubygems lua graphviz"
     # 集成开发工具
