@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.3.8
+# @Version: v11.3.9
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -133,7 +133,7 @@ sudo pacman -S $(echo "
         Audio_Editors="audacity"
     # 视频
         # 视频播放
-        Video_Players="mpv"
+        Video_Players="mpv smplayer"
         # 音视频转换
         Video_Converters="ffmpeg"
         # 录屏
@@ -145,7 +145,7 @@ sudo pacman -S $(echo "
 ##### Utilities (实用程序) #####
     # 终端
         # 终端仿真器
-        Terminal_Emulators="konsole"
+        Terminal_Emulators="konsole alacritty"
         # 终端多路复用
         Terminal_multiplexers="tmux"
     # 文字输入
@@ -166,7 +166,7 @@ sudo pacman -S $(echo "
         # 任务管理
         Task_Managers="htop strace ksysguard cronie"
         # 系统监视
-        System_Monitors="glances hddtemp python-bottle sysstat conky"
+        System_Monitors="glances python-bottle hddtemp sysstat conky"
         # 系统信息查看
         System_Information_Viewers="neofetch kinfocenter"
         # 蓝牙管理
@@ -199,17 +199,19 @@ sudo pacman -S $(echo "
         # Emacs 风格的文本编辑器
         Emacs_Style_Text_Editors="emacs"
         # Vi 风格的文本编辑器
-        Vi_Style_Text_Editors="gvim"
+        Vi_Style_Text_Editors="gvim neovim python-neovim xclip"
         # 图形化的编辑器
         Graphical_Editors="visual-studio-code-bin"
     # 办公
-        # 办公套件
-        Office_Suites="wps-office ttf-wps-fonts"
+        # 办公套件 (不知 wps-office ttf-wps-fonts 是否可信)
+        Office_Suites="libreoffice-fresh"
     # 文件转换
     Document_Converters="pandoc dos2unix figlet"
     # 阅读和查看
-        # 查看 PDF, DjVu, CHM 文档
-        PDF_DjVu_CHM="okular"
+        # 查看 PDF, DjVu 文档
+        PDF_DjVu="okular"
+        # 查看 CHM 文档
+        CHM_DOC="kchmviewer"
         # 电子书
         E_Book="calibre"
         # 笔记记录
@@ -237,7 +239,7 @@ sudo pacman -S $(echo "
         # 安全 Shell
         Secure_Shell="openssh x11-ssh-askpass xorg-xauth"
     # 网络安全
-    Network_Security="dnscrypt-proxy nmap ntop tcpdump wireshark-qt bind-tools"
+    Network_Security="bind-tools dnscrypt-proxy nmap ntop tcpdump wireshark-qt"
     # 防火墙
     Firewall_Management="ufw gufw"
     # 屏幕锁
@@ -288,6 +290,8 @@ sudo pacman -S $(echo "
     Digital_Distribution="steam"
     # 游戏模拟器
     Video_Game_Platform_Emulators="ppsspp"
+    # 开放世界的沙盒游戏
+    Open_World_Game="hmcl"
 
 
 ##### 处理缺失的组件 #####
@@ -305,7 +309,7 @@ sudo pacman -S $(echo "
     Handle_Warframe=""
 
 
-" | grep "=" | cut -d"=" -f2 | xargs echo)
+" | grep "=" | cut -d "=" -f 2 | xargs echo)
 sync
 
 # sddm
