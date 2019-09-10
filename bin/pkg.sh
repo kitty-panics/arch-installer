@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.4.2
+# @Version: v11.4.3
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -147,8 +147,14 @@ sudo pacman -S $(echo "
         # 终端多路复用
         Terminal_multiplexers="tmux"
     # 文字输入
-        # 输入法
-        Input_Methods="fcitx fcitx-rime fcitx-gtk2 fcitx-gtk3 fcitx-qt5 kcm-fcitx"
+        # 输入法 (框架)
+        Input_Methods="fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt5 kcm-fcitx"
+        # 简体中文
+        Simplified_Chinese="fcitx-rime"
+        # 繁体中文
+        Traditional_Chinese="fcitx-table-extra"
+        # 日语
+        Japanese="fcitx-mozc"
     # 磁盘
         # 分区工具
         Partitioning_Tools="parted partitionmanager"
