@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.4.3
+# @Version: v11.4.4
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -98,6 +98,8 @@ sudo pacman -S $(echo "
         Email_IRC_XMPP_Clients="thunderbird"
         # 远程桌面
         Remote_Desktop="teamviewer"
+        # 实时聊天工具
+        IM="electronic-wechat"
     # 新闻, RSS 和博客
         # 新闻聚合
         News_Aggregators="quiterss"
