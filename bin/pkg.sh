@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @Author:  Cool-Pan
-# @Version: v11.4.7
+# @Version: v11.4.9
 # @Mail:    ivlioioilvi@gmail.com
 
 # This color requires special attention from the user (显示此颜色需要特别注意).
@@ -32,7 +32,7 @@ sudo pacman -S $(echo "
         # NVIDIA 显卡
         Nvidia="nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings"
         # NVIDIA Optimus
-        NVIDIA_Optimus="bumblebee bbswitch-dkms"
+        # NVIDIA_Optimus (bumblebee bbswitch-dkms)
         # Vulkan
         Vulkan="vulkan-icd-loader lib32-vulkan-icd-loader"
     # X Window 系统
@@ -323,8 +323,8 @@ sudo pacman -S $(echo "
 sync
 
 # bumblebee
-sudo gpasswd -a $USER bumblebee
-#sudo systemctl enable bumblebeed.service
+# sudo gpasswd -a $USER bumblebee
+# sudo systemctl enable bumblebeed.service
 
 # sddm
 sudo systemctl enable sddm.service
