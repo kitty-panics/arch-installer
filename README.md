@@ -30,7 +30,7 @@ you can consider installing a series of software that I am using.
 Execute the following command.
 
 ```Shell
-bash <(curl -sL https://git.io/fjgU6)
+bash <(curl -sL https://git.io/Je4qA)
 ```
 
 **Note:**
