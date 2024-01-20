@@ -110,7 +110,7 @@ Installation_System() {
     vim /etc/pacman.d/mirrorlist
 
     echo -e "$red >>>>> Install the base group. $reset"
-    pacstrap /mnt base linux linux-firmware xfsprogs dhcpcd vi
+    pacstrap -K /mnt base linux linux-firmware xfsprogs dhcpcd vi
 }
 Installation_System
 
