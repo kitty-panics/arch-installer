@@ -116,9 +116,11 @@ Installation_System
 
 Configure_The_System() {
     echo -e "$red >>>>> Generate an fstab file. $reset"
+    cp /mnt/etc/fstab /mnt/etc/fstab.bak
     genfstab -U /mnt >> /mnt/etc/fstab
 
     # 在 initramfs 解密
+    cp /mnt/etc/crypttab.initramfs /mnt/etc/crypttab.initramfs.bak
     cp -rf /mnt/etc/crypttab /mnt/etc/crypttab.initramfs
     echo -e "  BOOT    UUID=$(lsblk -f | grep "$second_Disk"2  | awk '{print $3}')    /boot/BOOT" >> /mnt/etc/crypttab.initramfs
     echo -e "  ROOT    UUID=$(lsblk -f | grep "$primary_Disk"  | awk '{print $3}')    /boot/ROOT" >> /mnt/etc/crypttab.initramfs
