@@ -1,62 +1,56 @@
 #!/usr/bin/env bash
+
 #
 # setup.sh
-# @Version: v1.0.5
+#
 
-# Defining variables.
+# Load plugin
+source libs/PInfo.sh
 
-# This color requires special attention from the user.
-green='\033[32m'
-# This color is used to display the process of script execution.
-red='\033[31m'
-# This color is used to display additional information.
-yellow='\033[33m'
-# Color End Flag.
-reset='\033[0m'
-
-# second.sh URL
+# second.sh url
 SECOND_SH="https://raw.githubusercontent.com/kitty-panics/arch-installer/master/bin/second.sh"
 
 Set_Console_Fonts() {
     setfont sun12x22
-    echo -e "$red >>>>> Set temporary console fonts. $reset"
+    PInfo "r" "=> Set temporary console fonts."
 }
 Set_Console_Fonts
 
 Show_Suggestions() {
-    echo -e "$red >>>>> Show important suggestions. $reset"
-    echo -e "$green \n =>> Please read the following carefully:\n $reset"
-    echo -e "$yellow ######################################################################### $reset"
-    echo -e "$yellow * Ensure the equipment is in a high-speed and stable network environment. $reset"
-    echo -e "$yellow * Ensure that important files in the equipment are backed up.             $reset"
-    echo -e "$yellow ######################################################################### $reset"
-    echo -e "$yellow * There must be two blank disks.                                          $reset"
-    echo -e "$yellow =>> One as the primary disk, at least 30G of space.                       $reset"
-    echo -e "$yellow =>> One as the second disk , must be a USB with at least 8G of space.     $reset"
-    echo -e "$yellow #########################################################################\\n $reset"
+    PInfo "r" "=> Show important suggestions."
+    PInfo "g" "\n => Please read the following carefully:\n"
 
-    echo -e "$green =>> Do you want to continue?$reset$yellow Yes(any)/No(n) $reset"
+    PInfo "y" "#########################################################################  "
+    PInfo "y" "* Ensure the equipment is in a high-speed and stable network environment.  "
+    PInfo "y" "* Ensure that important files in the equipment are backed up.              "
+    PInfo "y" "#########################################################################  "
+    PInfo "y" "* There must be two blank disks.                                           "
+    PInfo "y" "=> One as the primary disk, at least 30G of space.                         "
+    PInfo "y" "=> One as the second disk , must be a USB with at least 8G of space.       "
+    PInfo "y" "#########################################################################\n"
+
+    PInfo "g" "=> Do you want to continue? Yes(any)/No(n)"
     read -r YES_NO
     if [ "$YES_NO" == "n" ]; then
-        echo -e "$red >>>>> Installation script has quit. $reset"
+        PInfo "r" "=> Installation script has quit."
         exit
     fi
 }
 Show_Suggestions
 
 Update_System_Clock() {
-    echo -e "$red >>>>> Update the system clock. $reset"
+    PInfo "r" "=> Update the system clock."
     timedatectl set-ntp true
 }
 Update_System_Clock
 
 Partition_Disk() {
-    echo -e "$red >>>>> Partition the disks $reset"
+    PInfo "r" "=> Partition the disks"
     parted -s --align optimal /dev/"$2" mklabel gpt
     parted -s --align optimal /dev/"$2" mkpart primary 0% 1G # /dev/"$2"1 (1G, EFI)
     parted -s --align optimal /dev/"$2" mkpart primary 1G 2G # /dev/"$2"2 (1G, BOOT)
 
-    echo -e "$red >>>>> Encrypt the second disks $reset$yellow(Follow the prompts to enter the password). $reset"
+    PInfo "r" "=> Encrypt the second disks (Follow the prompts to enter the password)."
     # 创建密钥
     dd if=/dev/random of=BOOT bs=2048 count=1 status=progress
     dd if=/dev/random of=ROOT bs=2048 count=1 status=progress
@@ -70,14 +64,14 @@ Partition_Disk() {
 }
 
 Format_Disk() {
-    echo -e "$red >>>>> Format the partitions. $reset"
+    PInfo "r" "=> Format the partitions."
     mkfs.fat -F 32 /dev/"$2"1
     mkfs.xfs /dev/mapper/BOOT
     mkfs.xfs /dev/mapper/ROOT
 }
 
 Mount_Disk(){
-    echo -e "$red >>>>> Mount the filesystems. $reset"
+    PInfo "r" "=> Mount the filesystems."
     # "/" 分区
     mount /dev/mapper/ROOT /mnt
     # "/boot" 分区
@@ -92,30 +86,30 @@ Mount_Disk(){
 }
 
 # 磁盘信息
-echo -e "$red >>>>> Please select a disk. $reset"
+PInfo "r" "=> Please select a disk."
 lsblk -f
 # 选择磁盘
-echo -e "$green =>> Enter the primary disk device name $reset$yellow(Direct input): $reset"
+PInfo "g" "=> Enter the primary disk device name (Direct input):"
 read -r primary_Disk
-echo -e "$green =>> Enter the second disk device name $reset$yellow(Direct input): $reset"
+PInfo "g" "=> Enter the second disk device name (Direct input):"
 read -r second_Disk
 Partition_Disk "$primary_Disk" "$second_Disk"
 Format_Disk    "$primary_Disk" "$second_Disk"
 Mount_Disk     "$primary_Disk" "$second_Disk"
 
 Installation_System() {
-    echo -e "$red >>>>> Select the mirrors. $reset"
-    echo -e "$green =>> \"mirrorlist\" file will be edited $reset$yellow(Enter key continues). $reset"
+    PInfo "r" "=> Select the mirrors."
+    PInfo "g" "=> \"mirrorlist\" file will be edited (Enter key continues)."
     read -r PAUSE
     vim /etc/pacman.d/mirrorlist
 
-    echo -e "$red >>>>> Install the base group. $reset"
+    PInfo "r" "=> Install the base group."
     pacstrap -K /mnt base linux linux-firmware xfsprogs dhcpcd vi
 }
 Installation_System
 
 Configure_The_System() {
-    echo -e "$red >>>>> Generate an fstab file. $reset"
+    PInfo "r" "=> Generate an fstab file."
     cp /mnt/etc/fstab /mnt/etc/fstab.bak
     genfstab -U /mnt >> /mnt/etc/fstab
 
@@ -126,7 +120,7 @@ Configure_The_System() {
     echo -e "  ROOT    UUID=$(lsblk -f | grep "$primary_Disk"  | awk '{print $3}')    /boot/ROOT" >> /mnt/etc/crypttab.initramfs
     chmod 600 /mnt/boot/initramfs-linux*
 
-    echo -e "$red >>>>> Change root into the new system. $reset"
+    PInfo "r" "=> Change root into the new system."
     curl -sL "$SECOND_SH" -o /mnt/root/second.sh
     chmod +x /mnt/root/second.sh
     sync
@@ -135,7 +129,7 @@ Configure_The_System() {
 }
 Configure_The_System
 
-echo -e "$red >>>>> Installation completed. $reset"
+PInfo "r" "=> Installation completed."
 sync
 umount -R /mnt
 cryptsetup -v close BOOT

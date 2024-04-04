@@ -1,25 +1,15 @@
 #!/usr/bin/env bash
+
 #
 # second.sh
-# @version: v1.0.5
-
-# Defining variables.
 #
-# This color requires special attention from the user.
-green='\033[32m'
-# This color is used to display the process of script execution.
-red='\033[31m'
-# This color is used to display additional information.
-yellow='\033[33m'
-# Color End Flag.
-reset='\033[0m'
 
 # Export the package list of installed base groups
 pacman -Q > /root/base-group.log
 
 Set_Time_Zone() {
-    echo -e "$red >>>>> Set time zone. $reset"
-    echo -e "$green =>> Please select the time zone to set $reset$yellow(Enter key continues). $reset"
+    PInfo "r" "=> Set time zone."
+    PInfo "g" "=> Please select the time zone to set (Enter key continues)."
     read -r PAUSE
     touch /etc/localtime.bak
     ln -sf /usr/share/zoneinfo/"$(tzselect)" /etc/localtime
@@ -29,40 +19,40 @@ Set_Time_Zone() {
 Set_Time_Zone
 
 Set_Localization() {
-    echo -e "$red >>>>> Generate the needed locales. $reset"
-    echo -e "$green =>> \"locale.gen\" file will be edited $reset$yellow(Enter key continues). $reset"
+    PInfo "r" "=> Generate the needed locales."
+    PInfo "g" "=> \"locale.gen\" file will be edited (Enter key continues)."
     read -r PAUSE
     cp /etc/locale.gen /etc/locale.gen.bak
     vi /etc/locale.gen
     locale-gen
 
-    echo -e "$red >>>>> Setting the system locale. $reset"
-    echo -e "$green =>> Default value is$reset$yellow LANG=en_US.UTF-8 $reset"
+    PInfo "r" "=> Setting the system locale."
+    PInfo "g" "=> Default value is LANG=en_US.UTF-8"
     touch /etc/locale.conf.bak
     echo -e "LANG=en_US.UTF-8" > /etc/locale.conf
 
-    echo -e "$red >>>>> Set the keyboard layout and font. $reset"
-    echo -e "$green =>> Default Value is$reset$yellow KEYMAP=us FONT=sun12x22 $reset"
+    PInfo "r" "=> Set the keyboard layout and font."
+    PInfo "g" "=> Default Value is KEYMAP=us FONT=sun12x22"
     touch /etc/vconsole.conf.bak
     echo -e "KEYMAP=us\nFONT=sun12x22" > /etc/vconsole.conf
 }
 Set_Localization
 
 Network_Configuration() {
-    echo -e "$red >>>>> Set the hostname. $reset"
-    echo -e "$green =>> Please enter the hostname $reset$yellow(Direct input): $reset"
+    PInfo "r" "=> Set the hostname."
+    PInfo "g" "=> Please enter the hostname (Direct input):"
     read -r HOST_NAME
     touch /etc/hostname.bak
     echo -e "$HOST_NAME" > /etc/hostname
 
-    echo -e "$red >>>>> Configure the hosts file. $reset"
+    PInfo "r" "=> Configure the hosts file."
     cp /etc/hosts /etc/hosts.bak
     echo -e "127.0.0.1 localhost\\n::1       localhost\\n127.0.1.1 $host_Name.localdomain $host_Name" >> /etc/hosts
 }
 Network_Configuration
 
 Config_Mkinitcpio() {
-    echo -e "$red >>>>> Configure mkinitcpio. $reset"
+    PInfo "r" "=> Configure mkinitcpio."
     cp /etc/mkinitcpio.conf /etc/mkinitcpio.conf.bak
     sed -i "s/^FILES=()$/FILES=(\/boot\/Key4Boot \/boot\/Key4Root)/" /etc/mkinitcpio.conf
     sed -i "s/^HOOKS=(.*$/HOOKS=(base systemd autodetect keyboard sd-vconsole modconf block sd-encrypt filesystems fsck)/" /etc/mkinitcpio.conf
@@ -71,23 +61,23 @@ Config_Mkinitcpio() {
 Config_Mkinitcpio
 
 User_Management() {
-    echo -e "$red >>>>> Set a password for the Root. $reset"
-    echo -e "$green =>> Please set a password for the Root $reset$yellow(Direct input): $reset"
+    PInfo "r" "=> Set a password for the Root."
+    PInfo "g" "=> Please set a password for the Root (Direct input):"
     passwd
 
     pacman -S --noconfirm zsh
-    echo -e "$red >>>>> Create a new user. $reset"
-    echo -e "$green =>> Please create a new user name $reset$yellow(Direct input): $reset"
+    PInfo "r" "=> Create a new user."
+    PInfo "g" "=> Please create a new user name (Direct input):"
     read -r ADD_USER_NAME
     useradd -m -g users -G wheel -s /usr/bin/zsh "$ADD_USER_NAME"
 
-    echo -e "$red >>>>> Set a password for the new user. $reset"
-    echo -e "$green =>> Please set a password for the new user $reset$yellow(Direct input): $reset"
+    PInfo "r" "=> Set a password for the new user."
+    PInfo "g" "=> Please set a password for the new user (Direct input):"
     passwd "$ADD_USER_NAME"
 
     pacman -S --noconfirm sudo
-    echo -e "$red >>>>> Enable sudo for new users. $reset"
-    echo -e "$green =>> \"sudoers\" file will be edited $reset$yellow(Enter key continues). $reset"
+    PInfo "r" "=> Enable sudo for new users."
+    PInfo "g" "=> \"sudoers\" file will be edited (Enter key continues)."
     read -r PAUSE
     cp /etc/sudoers /etc/sudoers.bak
     EDITOR=vi visudo
@@ -95,7 +85,7 @@ User_Management() {
 User_Management
 
 Install_Bootloader() {
-    echo -e "$red >>>>> Install bootloader. $reset"
+    PInfo "r" "=> Install bootloader."
     pacman -S --noconfirm grub efibootmgr
     cp /etc/default/grub /etc/default/grub.bak
     sed -i "s/^.*CMDLINE_LINUX_DEFAULT=\".*$/GRUB_CMDLINE_LINUX_DEFAULT=\"quiet sysrq_always_enabled=1\"/" /etc/default/grub
