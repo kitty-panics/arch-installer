@@ -4,6 +4,9 @@
 # second.sh
 #
 
+# Load plugin
+source libs/PInfo.sh
+
 # Export the package list of installed base groups
 pacman -Q > /root/base-group.log
 
