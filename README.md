@@ -20,7 +20,7 @@
 - 可完全只使用鼠标、键盘操作。
 - 包含引导、性能、磁盘、网络、日志...等各种排障工具。
 
-![screenshot]: docs/screenshot.png
+![screenshot](docs/screenshot.png)
 
 ## 旧版
 
