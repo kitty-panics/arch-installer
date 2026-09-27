@@ -12,7 +12,7 @@ pacman -Q > /root/base-group.log
 
 Set_Time_Zone() {
     PInfo "r" "=> Set time zone."
-    PInfo "g" "=> Please select the time zone to set (Enter key continues)."
+    PInfo "g" "=> Please select the time zone to set (Press ENTER key to continues)."
     read -r PAUSE
     touch /etc/localtime.bak
     ln -sf /usr/share/zoneinfo/"$(tzselect)" /etc/localtime
@@ -23,7 +23,7 @@ Set_Time_Zone
 
 Set_Localization() {
     PInfo "r" "=> Generate the needed locales."
-    PInfo "g" "=> \"locale.gen\" file will be edited (Enter key continues)."
+    PInfo "g" "=> \"locale.gen\" file will be edited (Press ENTER key to continues)."
     read -r PAUSE
     cp /etc/locale.gen /etc/locale.gen.bak
     vi /etc/locale.gen
@@ -50,15 +50,15 @@ Network_Configuration() {
 
     PInfo "r" "=> Configure the hosts file."
     cp /etc/hosts /etc/hosts.bak
-    echo -e "127.0.0.1 localhost\\n::1       localhost\\n127.0.1.1 $host_Name.localdomain $host_Name" >> /etc/hosts
+    echo -e "127.0.0.1 localhost\\n::1       localhost" >> /etc/hosts
 }
 Network_Configuration
 
 Config_Mkinitcpio() {
     PInfo "r" "=> Configure mkinitcpio."
     cp /etc/mkinitcpio.conf /etc/mkinitcpio.conf.bak
-    sed -i "s/^FILES=()$/FILES=(\/boot\/Key4Boot \/boot\/Key4Root)/" /etc/mkinitcpio.conf
-    sed -i "s/^HOOKS=(.*$/HOOKS=(base systemd autodetect keyboard sd-vconsole modconf block sd-encrypt filesystems fsck)/" /etc/mkinitcpio.conf
+    sed -i "s/^FILES=()$/FILES=(\/boot\/BOOT \/boot\/ROOT)/" /etc/mkinitcpio.conf
+    sed -i "s/^HOOKS=(.*$/HOOKS=(base systemd autodetect microcode modconf keyboard sd-vconsole block sd-encrypt filesystems fsck)/" /etc/mkinitcpio.conf
     mkinitcpio -P
 }
 Config_Mkinitcpio
@@ -80,7 +80,7 @@ User_Management() {
 
     pacman -S --noconfirm sudo
     PInfo "r" "=> Enable sudo for new users."
-    PInfo "g" "=> \"sudoers\" file will be edited (Enter key continues)."
+    PInfo "g" "=> \"sudoers\" file will be edited (Press ENTER key to continues)."
     read -r PAUSE
     cp /etc/sudoers /etc/sudoers.bak
     EDITOR=vi visudo

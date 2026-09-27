@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #
-# setup.sh
+# Arch Linux Installer
 #
 
 # Load plugin
@@ -72,12 +72,12 @@ Format_Disk() {
 
 Mount_Disk(){
     PInfo "r" "=> Mount the filesystems."
-    # "/" 分区
+    # root 分区
     mount /dev/mapper/ROOT /mnt
-    # "/boot" 分区
+    # boot 分区
     mkdir -p /mnt/boot/efi
     mount /dev/mapper/BOOT /mnt/boot
-    # "/boot/efi" 分区
+    # esp 分区
     mount /dev/"$2"1 /mnt/boot/efi
 
     # 复制密钥
@@ -104,7 +104,7 @@ Installation_System() {
     vim /etc/pacman.d/mirrorlist
 
     PInfo "r" "=> Install the base group."
-    pacstrap -K /mnt base linux linux-firmware xfsprogs dhcpcd vi
+    pacstrap -K /mnt base linux-zen linux-firmware xfsprogs dhcpcd vim
 }
 Installation_System
 
