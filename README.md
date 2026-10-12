@@ -1,5 +1,7 @@
 # Arch Installer
 
+> 由于 Arch Linux 打包粒度太粗，难以进行精细化定制，本项目仅供个人使用，不再更新。
+
 近几年 [ArchISO] 体积增长了 1GB 多，功能却没有什么显著变化，反而多次变更 vmlinuz 和
 initrd 路径造成启动失败。
 
@@ -38,7 +40,7 @@ dd if=/path/to/iso of=/dev/your-usb-device bs=32M status=progress
 ```Bash
 # GRUB2 (Linux):
 
-# 1. 编辑 40_custom 文件
+# 1. 编辑 GRUB 40_custom 文件
 cp -a /etc/grub.d/40_custom /etc/grub.d/40_custom.bak
 vim /etc/grub.d/40_custom
 
@@ -60,7 +62,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 ## 安装 Arch Linux
 
-#### 1. 你可以以此镜像为基础继续使用
+#### 1. 以此镜像为基础继续使用
 
 ```Bash
 # 1. 硬盘分区
@@ -70,7 +72,9 @@ parted -s --align optimal /dev/nvme0n1 mkpart 2 2GiB 100%
 
 # 2. 文件系统与挂载
 mkfs.fat -F 32 /dev/nvme0n1p1
+fatlabel /dev/nvme0n1p1 "LIVE-ESP"
 mkfs.ext4 /dev/nvme0n1p2
+e2label /dev/nvme0n1p2 "LIVE-ROOT"
 
 mount /dev/nvme0n1p2 /mnt
 mkdir -p /mnt/boot/esp
@@ -80,11 +84,12 @@ mount /dev/nvme0n1p1 /mnt/boot/esp
 rsync -aAXHS --numeric-ids --info=PROGRESS2 --human-readable / /mnt
 
 # 4. 生成 fstab
-genfstab -U /mnt > /mnt/etc/fstab
+#genfstab -U /mnt > /mnt/etc/fstab
+cp -a /mnt/etc/fstab.bak /mnt/etc/fstab
 
-# 5. 生成 initramfs / UKI
-arch-chroot /mnt
-mkinitcpio -P
+# 5. 生成 Unified kernel image
+#arch-chroot /mnt
+#mkinitcpio -P
 
 # 6. 其它
 
@@ -95,17 +100,14 @@ pacman-key --populate
 
 #### 2. 全新安装 Arch Linux
 
-从 [Releases] 下载并启动 Live 镜像，点击桌面 **Installer** 图标按照操作提示可指导你完成安装。
+从 [Releases] 下载最新的 Live 镜像并启动，点击桌面上的 **Installer** 图标，
+按照操作提示可指导你完成安装。
 
 [Releases]: https://github.com/kitty-panics/arch-installer/releases
 
 ## 使用
 
 ### 1. 快捷键
-
-#### Xfce
-
-#### Ranger
 
 #### Chromium
 
