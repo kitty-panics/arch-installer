@@ -1,35 +1,117 @@
 # Arch Installer
 
-近几年 [ArchISO] 体积增长了 1GB 多，功能却没有什么显著变化，反而多次变更 vmlinuz 和 initrd
-路径造成启动失败。
+近几年 [ArchISO] 体积增长了 1GB 多，功能却没有什么显著变化，反而多次变更 vmlinuz 和
+initrd 路径造成启动失败。
 
-遂以自己本地稳定运行 **五年+** 的 [Arch Linux] + Xfce4 桌面系统为蓝本，制作了一个镜像。
+遂以自己本地稳定运行 **五年+** 的 [Arch Linux] + [Xfce4] 桌面系统为蓝本，制作了一个镜像。
 在保证轻量、美观的前提下，尽可能包含更多的维护工具。
 
-既可用于快速安装镜像，也能替代 [ArchISO] 充当 Live 维护系统。
+既可用于日常轻办公，也能替代 [ArchISO] 用作 Live 维护系统。
 
 [Arch Linux]: https://archlinux.org/
 [ArchISO]: https://archlinux.org/download/
-
-## 安装
-
-从 [Releases] 下载并启动 Live 镜像，点击桌面 **Installer** 图标即可实现全自动化安装。
-
-[Releases]: https://github.com/kitty-panics/arch-installer/releases
+[Xfce4]: https://wiki.archlinux.org/title/Xfce
 
 ## 特性
 
 - 完全中文本地化 + 易操作的图形化界面 (X11 + Xfce4)。
-- 精选各类轻量级软件，在不增大镜像体积的情况下满足日常使用和轻办公。
+- 精选各类轻量级软件，在不增大镜像体积的情况下可日常轻办公。
 - 包含引导、性能、磁盘、网络、日志... 等各种排障工具。
 - 系统各组件能自适应不同的分辨率。
 - 等你发现...
 
 ![screenshot](docs/screenshot.png)
 
+## 启动镜像
+
+大致有两种方式启动镜像。
+
+#### 1. 独占 U 盘: dd (Linux / macOS)、Rufus (Windows)
+
+```Bash
+# dd (Linux / macOS):
+dd if=/path/to/iso of=/dev/your-usb-device bs=32M status=progress
+```
+
+#### 2. 非独占 U 盘: GRUB2 (Linux)、Ventoy (Windows)
+
+```Bash
+# GRUB2 (Linux):
+
+# 1. 编辑 40_custom 文件
+cp -a /etc/grub.d/40_custom /etc/grub.d/40_custom.bak
+vim /etc/grub.d/40_custom
+
+# 2. 添加如下内容 (假设 iso 放在 ESP 分区)
+menuentry "[+] Arch Linux LiveCD" {
+    search --no-floppy --label Your-ESP-Label --set=root
+    set isofile="/path/to/archlinux-live-xxxxxxxx.iso"
+    loopback loop $isofile
+
+    set vmpath=/arch/boot/x86_64/vmlinuz-linux-zen
+    set imgdevpath=/dev/disk/by-label/Your-ESP-Label
+    linux (loop)$vmpath rw sysrq_always_enabled=1 img_dev=$imgdevpath img_loop=$isofile earlymodules=loop
+    initrd (loop)/arch/boot/x86_64/initramfs-linux-zen.img
+}
+
+# 3. 重新生成 grub.cfg
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+## 安装 Arch Linux
+
+#### 1. 你可以以此镜像为基础继续使用
+
+```Bash
+# 1. 硬盘分区
+parted -s --align optimal /dev/nvme0n1 mklabel gpt
+parted -s --align optimal /dev/nvme0n1 mkpart 1 0% 2GiB
+parted -s --align optimal /dev/nvme0n1 mkpart 2 2GiB 100%
+
+# 2. 文件系统与挂载
+mkfs.fat -F 32 /dev/nvme0n1p1
+mkfs.ext4 /dev/nvme0n1p2
+
+mount /dev/nvme0n1p2 /mnt
+mkdir -p /mnt/boot/esp
+mount /dev/nvme0n1p1 /mnt/boot/esp
+
+# 3. 全量复制系统文件
+rsync -aAXHS --numeric-ids --info=PROGRESS2 --human-readable / /mnt
+
+# 4. 生成 fstab
+genfstab -U /mnt > /mnt/etc/fstab
+
+# 5. 生成 initramfs / UKI
+arch-chroot /mnt
+mkinitcpio -P
+
+# 6. 其它
+
+# 重建 pacman 密钥环
+pacman-key --init
+pacman-key --populate
+```
+
+#### 2. 全新安装 Arch Linux
+
+从 [Releases] 下载并启动 Live 镜像，点击桌面 **Installer** 图标按照操作提示可指导你完成安装。
+
+[Releases]: https://github.com/kitty-panics/arch-installer/releases
+
 ## 使用
 
-### 快捷键
+### 1. 快捷键
+
+#### Xfce
+
+#### Ranger
+
+#### Chromium
+
+已安装 [Vimium] 插件，可以使用 Vim 风格的键盘快捷键进行网页浏览和标签页管理。
+
+[Vimium]: https://github.com/philc/vimium
 
 #### Vim
 
